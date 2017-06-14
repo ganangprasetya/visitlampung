@@ -18,7 +18,7 @@ class CreateTableJenisObjekwisata extends Migration
             $table->timestamps();
         });
         Schema::table('detail_objek_wisata', function (Blueprint $table) {
-            $table->foreign('id_jenis_objekwisata')
+            $table->foreign('id_jenis')
                   ->references('id')
                   ->on('jenis_objekwisata')
                   ->onDelete('cascade')
@@ -33,6 +33,9 @@ class CreateTableJenisObjekwisata extends Migration
      */
     public function down()
     {
+        Schema::table('detail_objek_wisata', function (Blueprint $table) {
+            $table->dropForeign('detail_objek_wisata_id_jenis_foreign');
+        });
         Schema::drop('jenis_objekwisata');
     }
 }

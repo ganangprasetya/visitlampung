@@ -16,35 +16,26 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <i class="fa fa-fw fa-user"></i> Administrator <span class="caret"></span>   
             </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
-                <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
-                </p>
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-              </li>
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                  <a href="#">
+                      <i class="fa fa-btn fa-lock"></i> Ubah Password
+                  </a>
+               </li>
+                <li class="divider"></li>
+                  <li>
+                    <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                      <i class="fa fa-btn fa-power-off"></i> Logout
+                    </a>
+                  {{-- <form id="logout-form" action="#" method="POST" style="display: none;">
+                    <input type="hidden" name="_token" value="RzCd6UNXuHj37wHh4awRe0ee2WrbpPrPvkRnWOKB">
+                  </form> --}}
+                  </li>
             </ul>
-          </li>
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
           </li>
         </ul>
       </div>

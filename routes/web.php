@@ -11,12 +11,34 @@
 |
 */
 
-Route::get('/admin', function () {
-    return view('index');
-});
-Route::get('/admin/detailobjekwisata', function () {
-    $halaman = 'detailobjekwisata';
-    $detailobjekwisata = ['Pantai Mutun', 'Pantai Klara', 'Pantai C'];
-    return view('detailobjekwisata', compact('halaman', 'detailobjekwisata'));
+Route::get('/', function () {
+    return view('welcome');
 });
 
+Route::get('/admin', function () {
+	$halaman = 'dashboard';
+    return view('admin.index.dashboard', compact('halaman'));
+});
+
+Route::get('/admin/data/objekwisata', function () {
+	$halaman = 'objekwisata';
+    return view('admin.objekwisata.index', compact('halaman'));
+});
+
+Route::get('/admin/data/users', function () {
+	$halaman = 'users';
+    return view('admin.users.index', compact('halaman'));
+});
+
+Route::get('/admin/transaksi', function () {
+	$halaman = 'transaksi';
+    return view('admin.transaksi.index', compact('halaman'));
+});
+
+
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

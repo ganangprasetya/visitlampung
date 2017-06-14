@@ -16,20 +16,46 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="active treeview">
-          <a href="#">
+
+        @if (!empty($halaman) && $halaman == 'dashboard')
+        <li class="active">
+          <a href="{{ url('/admin') }}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-        <li><a href="#"><i class="fa fa-files-o"></i> <span>Data Objek Wisata</span></a></li>
-        <li class="treeview"><a href="#"><i class="fa fa-files-o"></i><span>Transaksi</span></a>
+        @else
+        <li>
+          <a href="{{ url('/admin') }}">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        @endif
+
+        <li class="active treeview"><a href="#"><i class="fa fa-files-o"></i><span>Data</span></a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i>Harian</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>Bulanan</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>Tahunan</a></li>
+          @if (!empty($halaman) && $halaman == 'objekwisata')
+            <li class="active"><a href="{{ url('/admin/data/objekwisata') }}"><i class="fa fa-map-marker"></i>Objek Wisata</a></li>
+          @else
+            <li><a href="{{ url('/admin/data/objekwisata') }}"><i class="fa fa-map-marker"></i>Objek Wisata</a></li>
+          @endif
+          @if (!empty($halaman) && $halaman == 'users')
+            <li class="active"><a href="{{ url('/admin/data/users') }}"><i class="fa fa-user"></i>Users</a></li>
+          @else
+            <li><a href="{{ url('/admin/data/users') }}"><i class="fa fa-user"></i>Users</a></li>
+          @endif
           </ul>
         </li>
-        <li><a href="#"><i class="fa fa-book"></i> <span>Laporan</span></a></li>
+
+        @if (!empty($halaman) && $halaman == 'transaksi')
+        <li class="active">
+          <a href="{{ url('/admin/transaksi') }}">
+            <i class="fa fa-files-o"></i> <span>Transaksi</span>
+          </a>
+        </li>
+        @else
+        <li><a href="{{ url('/admin/transaksi') }}"><i class="fa fa-files-o"></i> <span>Transaksi</span></a></li>
+        @endif
+        
     </section>
     <!-- /.sidebar -->
   </aside>

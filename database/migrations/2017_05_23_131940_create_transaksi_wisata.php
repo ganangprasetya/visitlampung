@@ -14,7 +14,6 @@ class CreateTransaksiWisata extends Migration
     {
         Schema::create('transaksi_wisata', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('tanggal');
             $table->integer('id_objekwisata')->unsigned()->index();
             $table->integer('id_user')->unsigned()->index();
             $table->timestamps();
@@ -23,11 +22,11 @@ class CreateTransaksiWisata extends Migration
                   ->on('detail_objek_wisata')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
-            $table->foreign('id_user')
-                  ->references('id')
-                  ->on('users')
-                  ->onDelete('cascade')
-                  ->onUpdate('cascade');
+            // $table->foreign('id_user')
+            //       ->references('id')
+            //       ->on('users')
+            //       ->onDelete('cascade')
+            //       ->onUpdate('cascade');
         });
     }
 

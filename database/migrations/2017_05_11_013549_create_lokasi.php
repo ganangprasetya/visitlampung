@@ -15,8 +15,8 @@ class CreateLokasi extends Migration
     {
        Schema::create('lokasi', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_kabupatenkota')->unsigned();
-            $table->integer('id_kecamatan')->unsigned();
+            $table->integer('id_kabupatenkota')->unsigned()->index();
+            $table->integer('id_kecamatan')->unsigned()->index();
             $table->string('desa_kelurahan', 30);
             $table->timestamps();
         });

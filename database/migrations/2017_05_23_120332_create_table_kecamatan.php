@@ -13,17 +13,17 @@ class CreateTableKecamatan extends Migration
     public function up()
     {
         Schema::create('kecamatan', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->index();
             $table->string('nama_kecamatan');
             $table->timestamps();
         });
-        // Schema::table('lokasi', function (Blueprint $table) {
-        //     $table->foreign('id_kecamatan')
-        //           ->references('id')
-        //           ->on('kecamatan')
-        //           ->onDelete('cascade')
-        //           ->onUpdate('cascade');
-        // });
+        Schema::table('lokasi', function (Blueprint $table) {
+            $table->foreign('id_kecamatan')
+                  ->references('id')
+                  ->on('kecamatan')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+        });
     }
 
     /**
@@ -33,9 +33,9 @@ class CreateTableKecamatan extends Migration
      */
     public function down()
     {
-        // Schema::table('lokasi', function (Blueprint $table) {
-        //     $table->dropForeign('lokasi_id_kecamatan_foreign');
-        // });
+        Schema::table('lokasi', function (Blueprint $table) {
+            $table->dropForeign('lokasi_id_kecamatan_foreign');
+        });
         Schema::drop('kecamatan');
     }
 }

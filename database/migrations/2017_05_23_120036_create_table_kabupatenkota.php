@@ -13,19 +13,19 @@ class CreateTableKabupatenkota extends Migration
     public function up()
     {
         Schema::create('kabupatenkota', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->index();
             $table->string('nama_kabupatenkota', 30);
             $table->string('pusat_pemerintahan', 30);
             $table->string('peta_lokasi')->nullable();
             $table->timestamps();
         });
-        // Schema::table('lokasi', function (Blueprint $table) {
-        //     $table->foreign('id_kabupatenkota')
-        //           ->references('id')
-        //           ->on('kabupatenkota')
-        //           ->onDelete('cascade')
-        //           ->onUpdate('cascade');
-        // });
+        Schema::table('lokasi', function (Blueprint $table) {
+            $table->foreign('id_kabupatenkota')
+                  ->references('id')
+                  ->on('kabupatenkota')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+        });
     }
 
     /**
@@ -35,9 +35,9 @@ class CreateTableKabupatenkota extends Migration
      */
     public function down()
     {
-        // Schema::table('lokasi', function (Blueprint $table) {
-        //     $table->dropForeign('lokasi_id_kabupatenkota_foreign');
-        // });
+        Schema::table('lokasi', function (Blueprint $table) {
+            $table->dropForeign('lokasi_id_kabupatenkota_foreign');
+        });
         Schema::drop('kabupatenkota');
     }
 }
