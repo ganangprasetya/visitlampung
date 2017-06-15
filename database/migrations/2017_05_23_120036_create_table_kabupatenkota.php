@@ -19,7 +19,7 @@ class CreateTableKabupatenkota extends Migration
             $table->string('peta_lokasi')->nullable();
             $table->timestamps();
         });
-        Schema::table('lokasi', function (Blueprint $table) {
+        Schema::table('kecamatan', function (Blueprint $table) {
             $table->foreign('id_kabupatenkota')
                   ->references('id')
                   ->on('kabupatenkota')
@@ -35,8 +35,8 @@ class CreateTableKabupatenkota extends Migration
      */
     public function down()
     {
-        Schema::table('lokasi', function (Blueprint $table) {
-            $table->dropForeign('lokasi_id_kabupatenkota_foreign');
+        Schema::table('kecamatan', function (Blueprint $table) {
+            $table->dropForeign('kecamatan_id_kabupatenkota_foreign');
         });
         Schema::drop('kabupatenkota');
     }

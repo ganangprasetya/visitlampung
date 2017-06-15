@@ -17,10 +17,12 @@ class CreateTableDetailObjekWisata extends Migration
             $table->string('nama_objekwisata', 50);
             $table->integer('id_jenis')->unsigned();
             $table->integer('id_lokasi')->unsigned();
-            $table->double('lat', 20);
-            $table->double('long', 20);
+            $table->double('lat', 20,10);
+            $table->double('long', 20,10);
             $table->string('info', 150);
-            $table->string('gambar')->nullable();
+            $table->string('gambar1')->nullable();
+            $table->string('gambar2')->nullable();
+            $table->string('gambar3')->nullable();
             $table->timestamps();
         });
     }

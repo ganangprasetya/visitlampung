@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+  #map-canvas{
+    width: 900px;
+    height: 300px;
+  }
+</style>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Admin Panel</title>
@@ -27,19 +33,20 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  @include('layouts.header')
+  @include('layouts.admin.header')
   <!-- Left side column. contains the logo and sidebar -->
-  @include('layouts.sidebar')
+  @include('layouts.admin.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
   @yield('content')
     
   </div>
-  @include('layouts.footer')
+  @include('layouts.admin.footer')
 </div>
 
 <!-- Script -->
+
 <script src="{{ asset('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 <script src="{{ asset('https://code.jquery.com/ui/1.11.4/jquery-ui.min.js') }}"></script>
 <script>
@@ -65,6 +72,8 @@
 <script src="{{ asset('plugins/flot/jquery.flot.resize.min.js') }}"></script>
 <script src="{{ asset('plugins/flot/jquery.flot.pie.min.js') }}"></script>
 <script src="{{ asset('plugins/flot/jquery.flot.categories.min.js') }}"></script>
+@yield('scripts')
+
 {{-- <script>
   $(function () {
     $("#objekwisata").DataTable();
@@ -74,7 +83,7 @@
       "searching": false,
       "ordering": true,
       "info": true,
-      "autoWidth": false
+      "autoWidth": true
     });
   });
 </script> --}}

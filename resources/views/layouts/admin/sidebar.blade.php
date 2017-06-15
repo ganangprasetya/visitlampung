@@ -34,9 +34,9 @@
         <li class="active treeview"><a href="#"><i class="fa fa-files-o"></i><span>Data</span></a>
           <ul class="treeview-menu">
           @if (!empty($halaman) && $halaman == 'objekwisata')
-            <li class="active"><a href="{{ url('/admin/data/objekwisata') }}"><i class="fa fa-map-marker"></i>Objek Wisata</a></li>
+            <li class="active"><a href="{{ route('objekwisata.index') }}"><i class="fa fa-map-marker"></i>Objek Wisata</a></li>
           @else
-            <li><a href="{{ url('/admin/data/objekwisata') }}"><i class="fa fa-map-marker"></i>Objek Wisata</a></li>
+            <li><a href="{{ route('objekwisata.index') }}"><i class="fa fa-map-marker"></i>Objek Wisata</a></li>
           @endif
           @if (!empty($halaman) && $halaman == 'users')
             <li class="active"><a href="{{ url('/admin/data/users') }}"><i class="fa fa-user"></i>Users</a></li>

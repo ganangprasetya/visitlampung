@@ -13,9 +13,9 @@ class KecamatanSeeder extends Seeder
     {
         // DB::table('kecamatan')->truncate();
         $kecamatan = [
-        	['nama_kecamatan'=>'Padang Cermin'],
-        	['nama_kecamatan'=>'Teluk Pandan'],
-        	['nama_kecamatan'=>'Gedong Tataan']
+        	['id_kabupatenkota'=>1,'nama_kecamatan'=>'Padang Cermin'],
+        	['id_kabupatenkota'=>2,'nama_kecamatan'=>'Teluk Pandan'],
+        	['id_kabupatenkota'=>3,'nama_kecamatan'=>'Gedong Tataan']
         ];
 
         //Masukkan data ke database

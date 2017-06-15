@@ -14,8 +14,9 @@ class Kabupaten extends Model
     	'peta_lokasi'
     ];
 
-    //relasi one to many ke lokasi
-    public function lokasi(){
-    	return $this->hasMany('App\Lokasi','id_kabupatenkota');
+    //relasi one to many ke kecamatan
+    public function kecamatan()
+    {
+    	return $this->hasMany('App\Kecamatan','id_kabupatenkota');
     }
 }
