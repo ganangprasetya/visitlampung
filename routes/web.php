@@ -19,10 +19,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::group(['prefix'=>'admin'], function(){
-	Route::get('/', function () {
-		$halaman = 'dashboard';
-	    return view('admin.index.dashboard', compact('halaman'));
-	});
+	// Route::get('/', function () {
+	// 	$halaman = 'dashboard';
+	//     return view('admin.index.dashboard', compact('halaman'));
+	// });
+	Route::resource('/', 'DashboardController');
 
 	Route::group(['prefix'=>'data'], function(){
 

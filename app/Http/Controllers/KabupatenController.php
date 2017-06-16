@@ -8,6 +8,8 @@ use App\Kabupaten;
 
 use Storage;
 
+use Session;
+
 class KabupatenController extends Controller
 {
     /**
@@ -42,10 +44,20 @@ class KabupatenController extends Controller
     {
         // Kabupaten::create($request->all());
         $input = $request->all();
+
+        $this->validate($request, [
+            'nama_kabupatenkota' => 'required|string|max:30|unique:kabupatenkota,nama_kabupatenkota',
+            'pusat_pemerintahan'=> 'required|string|max:30|unique:kabupatenkota,pusat_pemerintahan',
+            'peta_lokasi' => 'required|image|max:500|mimes:jpeg,jpg,bmp,png'
+        ]);
+
         if($request->hasFile('peta_lokasi')){
             $input['peta_lokasi'] = $this->uploadFoto($request);
         }
         $kabupaten = Kabupaten::create($input);
+
+        //session
+        Session::flash('flash_message','Data Kabupaten berhasil disimpan.');
 
         return redirect()->route('kabupaten.index');
     }
@@ -58,7 +70,9 @@ class KabupatenController extends Controller
      */
     public function show($id)
     {
-        //
+        $halaman = 'objekwisata';
+        $kabupaten = Kabupaten::findOrFail($id);
+        return view('admin.kabupaten.show', compact('kabupaten'));
     }
 
     /**
@@ -85,6 +99,13 @@ class KabupatenController extends Controller
         $kabupaten = Kabupaten::findOrFail($id);
         // dd('it works');
         $input = $request->all();
+
+        $this->validate($request, [
+            'nama_kabupatenkota' => 'required|string|max:30|unique:kabupatenkota,nama_kabupatenkota,'.$id,
+            'pusat_pemerintahan'=> 'required|string|max:30|unique:kabupatenkota,pusat_pemerintahan,'.$id,
+            'peta_lokasi' => 'sometimes|image|max:500|mimes:jpeg,jpg,bmp,png'
+        ]);
+
         //hapus foto lama
         if ($request->hasFile('peta_lokasi')){
             //hapus foto
@@ -94,6 +115,10 @@ class KabupatenController extends Controller
             $input['peta_lokasi'] = $this->uploadFoto($request);
         }
         $kabupaten->update($input);
+
+        //session
+        Session::flash('flash_message','Data Kabupaten berhasil diupdate.');
+
         return redirect()->route('kabupaten.index');
     }
 
@@ -106,7 +131,12 @@ class KabupatenController extends Controller
     public function destroy($id)
     {
         $kabupaten = Kabupaten::findOrFail($id);
+        $this->hapusFoto($kabupaten);
         $kabupaten->delete();
+
+        Session::flash('flash_message','Data Kabupaten berhasil dihapus.');
+        Session::flash('penting',true);
+        
         return redirect()->route('kabupaten.index');
     }
 

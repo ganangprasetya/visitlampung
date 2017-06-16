@@ -21,19 +21,40 @@
             {{-- <form role="form"> --}}
           	{!! Form::model($objekwisata, ['method' => 'PATCH', 'action' => ['ObjekwisataController@update', $objekwisata->id], 'files' => true]) !!}
               <div class="box-body">
-                <div class="form-group">
+                @if ($errors->any())
+                  <div class="form-group {{ $errors->has('nama_objekwisata') ? 'has-error' : 'has-success' }}">
+                @else
+                  <div class="form-group">
+                @endif
                   {!! Form::label('nama_objekwisata', 'Nama Objek Wisata:', ['class' => 'control-label']) !!}
                   {!! Form::text('nama_objekwisata', null, ['class' => 'form-control']) !!}
+                @if ($errors->has('nama_objekwisata'))
+                    <span class="help-block">{{ $errors->first('nama_objekwisata') }}</span>
+                @endif
                 </div>
 
-                <div class="form-group">
+                @if ($errors->any())
+                  <div class="form-group {{ $errors->has('id_jenis') ? 'has-error' : 'has-success' }}">
+                @else
+                  <div class="form-group">
+                @endif
                   <label>Jenis Wisata</label>
                   {!! Form::select('id_jenis', App\Jenisobjekwisata::pluck('jenis_objekwisata','id')->all(), null, ['class'=>'form-control','id'=>'id_jenis','placeholder'=>'Pilih Jenis Wisata']) !!}
+                @if ($errors->has('id_jenis'))
+                    <span class="help-block">{{ $errors->first('id_jenis') }}</span>
+                @endif
                 </div>
 
-                <div class="form-group">
+                @if ($errors->any())
+                  <div class="form-group {{ $errors->has('id_lokasi') ? 'has-error' : 'has-success' }}">
+                @else
+                  <div class="form-group">
+                @endif
                   <label>Lokasi</label>
                   {!! Form::select('id_lokasi', App\Lokasi::pluck('desa_kelurahan','id')->all(), null, ['class'=>'form-control','id'=>'id_lokasi','placeholder'=>'Pilih Lokasi']) !!}
+                @if ($errors->has('id_lokasi'))
+                    <span class="help-block">{{ $errors->first('id_lokasi') }}</span>
+                @endif
                 </div>
  
                 <div class="form-group">
@@ -41,24 +62,52 @@
                   <div id="map-canvas"></div>
                 </div>
     
-                <div class="form-group">
+                @if ($errors->any())
+                  <div class="form-group {{ $errors->has('lat') ? 'has-error' : 'has-success' }}">
+                @else
+                  <div class="form-group">
+                @endif
                   {!! Form::label('lat', 'Lat', ['class' => 'control-label']) !!}
                   {!! Form::text('lat', null, ['class' => 'form-control']) !!}
+                @if ($errors->has('lat'))
+                    <span class="help-block">{{ $errors->first('lat') }}</span>
+                @endif
                 </div>
 
-                <div class="form-group">
+                @if ($errors->any())
+                  <div class="form-group {{ $errors->has('long') ? 'has-error' : 'has-success' }}">
+                @else
+                  <div class="form-group">
+                @endif
                   {!! Form::label('long', 'Lng', ['class' => 'control-label']) !!}
                   {!! Form::text('long', null, ['class' => 'form-control']) !!}
+                @if ($errors->has('long'))
+                    <span class="help-block">{{ $errors->first('long') }}</span>
+                @endif
                 </div>
 
-                <div class="form-group">
+                @if ($errors->any())
+                  <div class="form-group {{ $errors->has('info') ? 'has-error' : 'has-success' }}">
+                @else
+                  <div class="form-group">
+                @endif
                   {!! Form::label('info', 'Info', ['class' => 'control-label']) !!}
                   {!! Form::text('info', null, ['class' => 'form-control']) !!}
+                @if ($errors->has('info'))
+                    <span class="help-block">{{ $errors->first('info') }}</span>
+                @endif
                 </div>
 
-                <div class="form-group">
+                @if ($errors->any())
+                  <div class="form-group {{ $errors->has('gambar_satu') ? 'has-error' : 'has-success' }}">
+                @else
+                  <div class="form-group">
+                @endif
                   {!! Form::label('gambar_satu', 'Gambar 1') !!}
                   {!! Form::file('gambar_satu', ['class'=>'form-control']) !!}
+                @if ($errors->has('gambar_satu'))
+                    <span class="help-block">{{ $errors->first('gambar_satu') }}</span>
+                @endif
                 </div>
                 &nbsp;
                     @if(isset($objekwisata) && $objekwisata->gambar_satu)
@@ -67,9 +116,16 @@
                         </p>
                     @endif
 
-                <div class="form-group">
+                @if ($errors->any())
+                  <div class="form-group {{ $errors->has('gambar_dua') ? 'has-error' : 'has-success' }}">
+                @else
+                  <div class="form-group">
+                @endif
                   {!! Form::label('gambar_dua', 'Gambar 2') !!}
                   {!! Form::file('gambar_dua', ['class'=>'form-control']) !!}
+                @if ($errors->has('gambar_dua'))
+                    <span class="help-block">{{ $errors->first('gambar_dua') }}</span>
+                @endif
                 </div>
                 &nbsp;
                     @if(isset($objekwisata) && $objekwisata->gambar_dua)
@@ -78,9 +134,16 @@
                         </p>
                     @endif
 
-                <div class="form-group">
+                @if ($errors->any())
+                  <div class="form-group {{ $errors->has('gambar_tiga') ? 'has-error' : 'has-success' }}">
+                @else
+                  <div class="form-group">
+                @endif
                   {!! Form::label('gambar_tiga', 'Gambar 3') !!}
                   {!! Form::file('gambar_tiga', ['class'=>'form-control']) !!}
+                @if ($errors->has('gambar_tiga'))
+                    <span class="help-block">{{ $errors->first('gambar_tiga') }}</span>
+                @endif
                 </div>
                 &nbsp;
                     @if(isset($objekwisata) && $objekwisata->gambar_tiga)

@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Lokasi;
+
 use App\Kecamatan;
+
 use App\Kabupaten;
+
+use Session;
 
 class LokasiController extends Controller
 {
@@ -42,7 +47,15 @@ class LokasiController extends Controller
         // dd('it works');
         // $lokasi = $request->all();
         // return $lokasi;
+        $this->validate($request, [
+            'id_kabupatenkota' => 'required',
+            'id_kecamatan' => 'required',
+            'desa_kelurahan'=> 'required|string|max:30|unique:lokasi,desa_kelurahan'
+        ]);
         Lokasi::create($request->all());
+
+        Session::flash('flash_message','Data Lokasi berhasil disimpan.');
+
         return redirect()->route('lokasi.index');
     }
 
@@ -86,7 +99,15 @@ class LokasiController extends Controller
     public function update(Request $request, $id)
     {
         $lokasi = Lokasi::findOrFail($id);
+        $this->validate($request, [
+            'id_kabupatenkota' => 'required',
+            'id_kecamatan' => 'required',
+            'desa_kelurahan'=> 'required|string|max:30|unique:lokasi,desa_kelurahan,'.$id
+        ]);
         $lokasi->update($request->all());
+
+        Session::flash('flash_message','Data Lokasi berhasil diupdate.');
+
         return redirect()->route('lokasi.index');
     }
 
@@ -100,6 +121,7 @@ class LokasiController extends Controller
     {
         $lokasi = Lokasi::findOrFail($id);
         $lokasi->delete();
+        Session::flash('flash_message','Data Lokasi berhasil dihapus.');
         return redirect()->route('lokasi.index');
     }
 

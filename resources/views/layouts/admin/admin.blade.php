@@ -6,6 +6,10 @@
     width: 900px;
     height: 300px;
   }
+  #map1{
+    width: 1100px;
+    height: 300px;
+  }
 </style>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,6 +76,7 @@
 <script src="{{ asset('plugins/flot/jquery.flot.resize.min.js') }}"></script>
 <script src="{{ asset('plugins/flot/jquery.flot.pie.min.js') }}"></script>
 <script src="{{ asset('plugins/flot/jquery.flot.categories.min.js') }}"></script>
+<script src="{{ asset('js/custom.js') }}"></script>
 @yield('scripts')
 
 {{-- <script>

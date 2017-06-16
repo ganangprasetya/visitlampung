@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Kecamatan;
 
+use Session;
+
 class KecamatanController extends Controller
 {
     /**
@@ -38,7 +40,12 @@ class KecamatanController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'id_kabupatenkota' => 'required',
+            'nama_kecamatan'=> 'required|string|max:30|unique:kecamatan,nama_kecamatan'
+        ]);
         Kecamatan::create($request->all());
+        Session::flash('flash_message','Data Kecamatan berhasil disimpan.');
         return redirect()->route('kecamatan.index');
     }
 
@@ -75,7 +82,12 @@ class KecamatanController extends Controller
     public function update(Request $request, $id)
     {
         $kecamatan = Kecamatan::findOrFail($id);
+        $this->validate($request, [
+            'id_kabupatenkota' => 'required',
+            'nama_kecamatan'=> 'required|string|max:30|unique:kecamatan,nama_kecamatan,'.$id
+        ]);
         $kecamatan->update($request->all());
+        Session::flash('flash_message','Data Kecamatan berhasil diupdate.');
         return redirect()->route('kecamatan.index');
     }
 
@@ -89,6 +101,7 @@ class KecamatanController extends Controller
     {
         $kecamatan = Kecamatan::findOrFail($id);
         $kecamatan->delete();
+        Session::flash('flash_message','Data Kecamatan berhasil dihapus.');
         return redirect()->route('kecamatan.index');
     }
 }

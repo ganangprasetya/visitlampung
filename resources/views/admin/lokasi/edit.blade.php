@@ -2,7 +2,7 @@
 @section('content')
     <section class="content-header">
       <h1>
-        Objek Wisata
+        Lokasi
         <small>Control Panel</small>
       </h1>
       <ol class="breadcrumb">
@@ -22,21 +22,43 @@
             {{-- <form role="form"> --}}
         {!! Form::model($lokasi, ['method' => 'PATCH', 'action' => ['LokasiController@update', $lokasi->id]]) !!}
               <div class="box-body">
-        				<div class="form-group">
+        				@if ($errors->any())
+                  <div class="form-group {{ $errors->has('id_kabupatenkota') ? 'has-error' : 'has-success' }}">
+                @else
+                  <div class="form-group">
+                @endif
                   <label>Nama Kabupaten</label>
                   {!! Form::select('id_kabupatenkota', App\Kabupaten::pluck('nama_kabupatenkota','id')->all(), $lokasi->kecamatan->id_kabupatenkota, ['class'=>'form-control','id'=>'id_kabupatenkota','placeholder'=>'Pilih Kabupaten']) !!}
+                @if ($errors->has('id_kabupatenkota'))
+                      <span class="help-block">{{ $errors->first('id_kabupatenkota') }}</span>
+                @endif
                 </div>
                 
-        				<div class="form-group kecamatan">
+        				@if ($errors->any())
+                  <div class="form-group {{ $errors->has('id_kecamatan') ? 'has-error' : 'has-success' }} kecamatan">
+                @else
+                  <div class="form-group kecamatan">
+                @endif
                   <label>Nama Kecamatan</label>
                   {{-- <select class="form-control" name="id_kecamatan" id="id_kecamatan">
                     <option value=""></option>
                   </select> --}}
                   {!! Form::select('id_kecamatan', $kecamatan, null, ['class'=>'form-control','id'=>'id_kecamatan','placeholder'=>'Pilih Kecamatan']) !!}
+                @if ($errors->has('id_kecamatan'))
+                      <span class="help-block">{{ $errors->first('id_kecamatan') }}</span>
+                @endif
                 </div>
-        				<div class="form-group">
+
+                @if ($errors->any())
+                  <div class="form-group {{ $errors->has('desa_kelurahan') ? 'has-error' : 'has-success' }}">
+                @else
+                  <div class="form-group">
+                @endif
         					{!! Form::label('desa_kelurahan', 'Nama Desa/Kelurahan:', ['class' => 'control-label']) !!}
         					{!! Form::text('desa_kelurahan', null, ['class' => 'form-control']) !!}
+                @if ($errors->has('desa_kelurahan'))
+                      <span class="help-block">{{ $errors->first('desa_kelurahan') }}</span>
+                @endif
         				</div>
               </div>
               <!-- /.box-body -->

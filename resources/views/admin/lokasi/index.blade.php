@@ -3,7 +3,7 @@
 	<!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Objek Wisata
+        Lokasi
         <small>Control Panel</small>
       </h1>
       <ol class="breadcrumb">
@@ -20,21 +20,22 @@
               <h3 class="box-title">Data Lokasi</h3>
             </div>
             <div class="box-body">
+            @include('admin._partial.flash_message')
               <table id="lokasi" class="table table-bordered table-striped">
                 <thead>
                   <th>No</th>
-                  <th>Nama Kecamatan</th>
-                  <th>Nama Kabupaten</th>
                   <th>Lokasi</th>
+                  <th>Nama Kabupaten</th>
+                  <th>Nama Kecamatan</th>
                   <th>Action</th>
                 </thead>
                 <tbody>
                   @foreach($lokasi as $objek)
                     <tr>
                       <td>{{ $objek->id }}</td>
-                      <td>{{ $objek->kecamatan->nama_kecamatan}}</td>
+                      <td><strong>{{ $objek->desa_kelurahan}}</strong></td>
                       <td>{{ $objek->kecamatan->kabupaten->nama_kabupatenkota}}</td>
-                      <td>{{ $objek->desa_kelurahan}}</td>
+                      <td>{{ $objek->kecamatan->nama_kecamatan}}</td>
                       <td>
                         <div class="btn-group">
                           <button type="button" class="btn btn-default btn-flat">Action</button>
@@ -43,16 +44,13 @@
                           <span class="sr-only">Toggle Dropdown</span>
                           </button>
                           <ul class="dropdown-menu" role="menu">
+                          <li><a href="{{ route('lokasi.edit',$objek->id) }}">Update</a></li>
+                          
                           <li>
                               {!! Form::open(['method' => 'DELETE', 'action' => ['LokasiController@destroy', $objek->id]]) !!}
                               {!! Form::submit('Delete', ['class' => 'btn btn-link']) !!}
                               {!! Form::close() !!}
                           </li>
-
-                          <li><a href="{{ route('lokasi.edit',$objek->id) }}">Update</a></li>
-
-                          <li><a href="#">Detail</a></li>
-
                           </ul>
                         </div>
                       </td>

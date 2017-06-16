@@ -3,7 +3,7 @@
 	<!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Objek Wisata
+        Kabupaten
         <small>Control Panel</small>
       </h1>
       <ol class="breadcrumb">
@@ -19,7 +19,9 @@
             <div class="box-header">
               <h3 class="box-title">Data Kabupaten</h3>
             </div>
+
             <div class="box-body">
+            @include('admin._partial.flash_message')
               <table id="kabupaten" class="table table-bordered table-striped">
                 <thead>
                   <th>No</th>
@@ -41,15 +43,14 @@
                           <span class="sr-only">Toggle Dropdown</span>
                           </button>
                           <ul class="dropdown-menu" role="menu">
+                          <li><a href="{{ route('kabupaten.edit',$objek->id) }}">Update</a></li>
+
+                          <li><a href="{{ route('kabupaten.show', $objek->id) }}">Detail</a></li>
                           <li>
                               {!! Form::open(['method' => 'DELETE', 'action' => ['KabupatenController@destroy', $objek->id]]) !!}
                               {!! Form::submit('Delete', ['class' => 'btn btn-link']) !!}
                               {!! Form::close() !!}
                           </li>
-                          <li><a href="{{ route('kabupaten.edit',$objek->id) }}">Update</a></li>
-
-                          <li><a href="#">Detail</a></li>
-
                           </ul>
                         </div>
                       </td>

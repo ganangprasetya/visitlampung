@@ -2,7 +2,7 @@
 @section('content')
     <section class="content-header">
       <h1>
-        Objek Wisata
+        Jenis Objek Wisata
         <small>Control Panel</small>
       </h1>
       <ol class="breadcrumb">
@@ -22,9 +22,16 @@
             {{-- <form role="form"> --}}
           	{!! Form::model($jenisobjekwisata, ['method' => 'PATCH', 'action' => ['JenisobjekwisataController@update', $jenisobjekwisata->id]]) !!}
               <div class="box-body">
-                <div class="form-group">
+                @if ($errors->any())
+                  <div class="form-group {{ $errors->has('jenis_objekwisata') ? 'has-error' : 'has-success' }}">
+                @else
+                  <div class="form-group">
+                @endif
                   {!! Form::label('jenis_objekwisata', 'Jenis Objek Wisata:', ['class' => 'control-label']) !!}
                   {!! Form::text('jenis_objekwisata', null, ['class' => 'form-control']) !!}
+                @if ($errors->has('jenis_objekwisata'))
+                      <span class="help-block">{{ $errors->first('jenis_objekwisata') }}</span>
+                @endif
                 </div>
               </div>
               <!-- /.box-body -->

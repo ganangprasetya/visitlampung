@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Jenisobjekwisata;
 
+use Session;
+
 class JenisobjekwisataController extends Controller
 {
     /**
@@ -38,7 +40,14 @@ class JenisobjekwisataController extends Controller
      */
     public function store(Request $request)
     {
+        
+        $this->validate($request, [
+            'jenis_objekwisata' => 'required|string|max:10|unique:jenis_objekwisata,jenis_objekwisata'
+        ]);
         Jenisobjekwisata::create($request->all());
+
+        Session::flash('flash_message','Jenis Objekwisata berhasil disimpan.');
+
         return redirect()->route('jenisobjekwisata.index');
     }
 
@@ -75,7 +84,13 @@ class JenisobjekwisataController extends Controller
     public function update(Request $request, $id)
     {
         $jenisobjekwisata = jenisobjekwisata::findOrFail($id);
+        $this->validate($request, [
+            'jenis_objekwisata' => 'required|string|max:10|unique:jenis_objekwisata,jenis_objekwisata,'.$id
+        ]);
         $jenisobjekwisata->update($request->all());
+
+        Session::flash('flash_message','Jenis Objekwisata berhasil diupdate.');
+
         return redirect()->route('jenisobjekwisata.index');
     }
 
@@ -89,6 +104,7 @@ class JenisobjekwisataController extends Controller
     {
         $jenisobjekwisata = Jenisobjekwisata::findOrFail($id);
         $jenisobjekwisata->delete();
+        Session::flash('flash_message','Jenis Objekwisata berhasil dihapus.');
         return redirect()->route('jenisobjekwisata.index');
     }
 }

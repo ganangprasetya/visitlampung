@@ -2,7 +2,7 @@
 @section('content')
     <section class="content-header">
       <h1>
-        Objek Wisata
+        Lokasi
         <small>Control Panel</small>
       </h1>
       <ol class="breadcrumb">
@@ -11,7 +11,7 @@
         <li class="active"><a href="{{ route('lokasi.index') }}"><i></i> Lokasi</a></li>
       </ol>
     </section>
-		<div class="col-md-12">
+		    <div class="col-md-12">
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
@@ -22,34 +22,55 @@
             {{-- <form role="form"> --}}
           	{!! Form::open(['route'=>'lokasi.store']) !!}
               <div class="box-body">
-				<div class="form-group">
-          <label>Nama Kabupaten</label>
-          {!! Form::select('id_kabupatenkota', App\Kabupaten::pluck('nama_kabupatenkota','id')->all(), null, ['class'=>'form-control','id'=>'id_kabupatenkota','placeholder'=>'Pilih Kabupaten']) !!}
-        </div>
-        
-				<div class="form-group kecamatan">
-          <label>Nama Kecamatan</label>
-          <select class="form-control" name="id_kecamatan" id="id_kecamatan">
-            <option value=""></option>
-          </select>
-          {{-- {!! Form::select('id_kecamatan', App\Kecamatan::pluck('nama_kecamatan','id')->all(), null, ['class'=>'form-control','id'=>'id_kecamatan','placeholder'=>'Pilih Kecamatan']) !!} --}}
-        </div>
-				<div class="form-group">
-					{!! Form::label('desa_kelurahan', 'Nama Desa/Kelurahan:', ['class' => 'control-label']) !!}
-					{!! Form::text('desa_kelurahan', null, ['class' => 'form-control']) !!}
-				</div>
+        				@if ($errors->any())
+                  <div class="form-group {{ $errors->has('id_kabupatenkota') ? 'has-error' : 'has-success' }}">
+                @else
+                  <div class="form-group">
+                @endif
+                  <label>Nama Kabupaten</label>
+                  {!! Form::select('id_kabupatenkota', App\Kabupaten::pluck('nama_kabupatenkota','id')->all(), null, ['class'=>'form-control','id'=>'id_kabupatenkota','placeholder'=>'Pilih Kabupaten']) !!}
+                @if ($errors->has('id_kabupatenkota'))
+                      <span class="help-block">{{ $errors->first('id_kabupatenkota') }}</span>
+                @endif
+                </div>
+                
+        				@if ($errors->any())
+                  <div class="form-group {{ $errors->has('id_kecamatan') ? 'has-error' : 'has-success' }} kecamatan">
+                @else
+                  <div class="form-group kecamatan">
+                @endif
+                  <label>Nama Kecamatan</label>
+                  <select class="form-control" name="id_kecamatan" id="id_kecamatan">
+                    <option value=""></option>
+                  </select>
+                  {{-- {!! Form::select('id_kecamatan', App\Kecamatan::pluck('nama_kecamatan','id')->all(), null, ['class'=>'form-control','id'=>'id_kecamatan','placeholder'=>'Pilih Kecamatan']) !!} --}}
+                @if ($errors->has('id_kecamatan'))
+                      <span class="help-block">{{ $errors->first('id_kecamatan') }}</span>
+                @endif
+                </div>
+        				
+                @if ($errors->any())
+                  <div class="form-group {{ $errors->has('desa_kelurahan') ? 'has-error' : 'has-success' }}">
+                @else
+                  <div class="form-group">
+                @endif
+        					{!! Form::label('desa_kelurahan', 'Nama Desa/Kelurahan:', ['class' => 'control-label']) !!}
+        					{!! Form::text('desa_kelurahan', null, ['class' => 'form-control']) !!}
+                @if ($errors->has('desa_kelurahan'))
+                      <span class="help-block">{{ $errors->first('desa_kelurahan') }}</span>
+                @endif
+        				</div>
               </div>
-              <!-- /.box-body -->
-
+                      <!-- /.box-body -->
               <div class="box-footer">
-                <div class="form-group">
-					{!! Form::submit('Tambah', ['class' => 'btn btn-primary form-control']) !!}
-				</div>
+                  <div class="form-group">
+        					 {!! Form::submit('Tambah', ['class' => 'btn btn-primary form-control']) !!}
+        			   </div>
               </div>
-            {{-- </form> --}}
-            {!! Form::close() !!}
+                    {{-- </form> --}}
+                    {!! Form::close() !!}
+            </div>
           </div>
-        </div>
         {{-- <script type="text/javascript">alert('test');</script> --}}
         <script src="{{ asset('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
         <script type="text/javascript">

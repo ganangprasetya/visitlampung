@@ -20,13 +20,13 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h3>{{ $jumlah_objekwisata }}</h3>
               <p>Lokasi Wisata</p>
             </div>
             <div class="icon">
               <i class="ion ion-ios-world-outline"></i>
             </div>
-            <a href="#" class="small-box-footer">Tampilkan Semua <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ route('objekwisata.index') }}" class="small-box-footer">Tampilkan Semua <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 

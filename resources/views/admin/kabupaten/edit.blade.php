@@ -2,7 +2,7 @@
 @section('content')
   <section class="content-header">
       <h1>
-        Objek Wisata
+        Kabupaten
         <small>Control Panel</small>
       </h1>
       <ol class="breadcrumb">
@@ -19,17 +19,38 @@
             </div>
   	{!! Form::model($kabupaten, ['method' => 'PATCH', 'action' => ['KabupatenController@update', $kabupaten->id], 'files' => true]) !!}
   			<div class="box-body">
-          		<div class="form-group">
-          			{!! Form::label('nama_kabupatenkota', 'Nama Kabupaten:', ['class' => 'control-label']) !!}
-          			{!! Form::text('nama_kabupatenkota', null, ['class' => 'form-control']) !!}
-          		</div>
-              <div class="form-group">
+    		      @if ($errors->any())
+                <div class="form-group {{ $errors->has('nama_kabupatenkota') ? 'has-error' : 'has-success' }}">
+              @else
+                <div class="form-group">
+              @endif
+                  {!! Form::label('nama_kabupatenkota', 'Nama Kabupaten:', ['class' => 'control-label']) !!}
+                  {!! Form::text('nama_kabupatenkota', null, ['class' => 'form-control']) !!}
+                  @if ($errors->has('nama_kabupatenkota'))
+                    <span class="help-block">{{ $errors->first('nama_kabupatenkota') }}</span>
+                  @endif
+                </div>
+              @if ($errors->any())
+                <div class="form-group {{ $errors->has('pusat_pemerintahan') ? 'has-error' : 'has-success' }}">
+              @else
+                <div class="form-group">
+              @endif
                 {!! Form::label('pusat_pemerintahan', 'Pusat Pemerintahan:', ['class' => 'control-label']) !!}
                 {!! Form::text('pusat_pemerintahan', null, ['class' => 'form-control']) !!}
+                @if ($errors->has('pusat_pemerintahan'))
+                    <span class="help-block">{{ $errors->first('pusat_pemerintahan') }}</span>
+                  @endif
               </div>
-              <div class="form-group">
+              @if ($errors->any())
+               <div class="form-group {{ $errors->has('peta_lokasi') ? 'has-error' : 'has-success' }}">
+               @else
+                 <div class="form-group">
+               @endif
                   {!! Form::label('peta_lokasi', 'Peta Lokasi') !!}
                   {!! Form::file('peta_lokasi', ['class'=>'form-control']) !!}
+                  @if ($errors->has('peta_lokasi'))
+                    <span class="help-block">{{ $errors->first('peta_lokasi') }}</span>
+                  @endif
                   &nbsp;
                     @if(isset($kabupaten) && $kabupaten->peta_lokasi)
                         <p>
