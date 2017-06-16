@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Kabupaten;
 
+use Storage;
+
 class KabupatenController extends Controller
 {
     /**
@@ -38,7 +40,13 @@ class KabupatenController extends Controller
      */
     public function store(Request $request)
     {
-        Kabupaten::create($request->all());
+        // Kabupaten::create($request->all());
+        $input = $request->all();
+        if($request->hasFile('peta_lokasi')){
+            $input['peta_lokasi'] = $this->uploadFoto($request);
+        }
+        $kabupaten = Kabupaten::create($input);
+
         return redirect()->route('kabupaten.index');
     }
 
@@ -74,9 +82,18 @@ class KabupatenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd('it works');
         $kabupaten = Kabupaten::findOrFail($id);
-        $kabupaten->update($request->all());
+        // dd('it works');
+        $input = $request->all();
+        //hapus foto lama
+        if ($request->hasFile('peta_lokasi')){
+            //hapus foto
+            $this->hapusFoto($kabupaten);
+
+            //upload foto
+            $input['peta_lokasi'] = $this->uploadFoto($request);
+        }
+        $kabupaten->update($input);
         return redirect()->route('kabupaten.index');
     }
 
@@ -91,5 +108,30 @@ class KabupatenController extends Controller
         $kabupaten = Kabupaten::findOrFail($id);
         $kabupaten->delete();
         return redirect()->route('kabupaten.index');
+    }
+
+    public function uploadFoto(Request $request){
+        $peta_lokasi = $request->file('peta_lokasi');
+        $ext = $peta_lokasi->getClientOriginalExtension();
+
+        if ($request->file('peta_lokasi')->isValid()){
+            $peta_lokasi_name = "peta_".date('YmdHis').".$ext";
+            $upload_path = 'img';
+            $request->file('peta_lokasi')->move($upload_path, $peta_lokasi_name);
+
+            return $peta_lokasi_name;
+        }
+        return false;
+    }
+
+    private function hapusFoto(Kabupaten $kabupaten){
+        $exist = Storage::disk('peta_lokasi')->exists($kabupaten->peta_lokasi);
+        if(isset($kabupaten->peta_lokasi) && $exist){
+            $delete = Storage::disk('peta_lokasi')->delete($kabupaten->peta_lokasi);
+            if ($delete){
+                return true;
+            }
+            return false;
+        }
     }
 }

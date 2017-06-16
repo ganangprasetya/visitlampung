@@ -54,7 +54,7 @@
                               {!! Form::close() !!}
                           </li>
 
-                          <li><a href="#">Update</a></li>
+                          <li><a href="{{ route('objekwisata.edit',$objek->id) }}">Update</a></li>
 
                           <li><a href="#">Detail</a></li>
 

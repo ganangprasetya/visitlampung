@@ -43,6 +43,12 @@ Route::group(['prefix'=>'admin'], function(){
 		$halaman = 'transaksi';
 	    return view('admin.transaksi.index', compact('halaman'));
 	});
+
+	Route::get('backup', function () {
+		$halaman = 'backup';
+	    return view('admin.backup.index', compact('halaman'));
+	});
+
 });
 
 

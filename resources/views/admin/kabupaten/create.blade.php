@@ -8,7 +8,7 @@
       <ol class="breadcrumb">
         <li><a href="{{ url('/admin') }}"><i class="fa fa-dashboard"></i> Admin</a></li>
         <li><a href="{{ url('/admin/data/objekwisata') }}"><i></i> Objek Wisata</a></li>
-        <li class="active">Kabupaten</li>
+        <li class="active"><a href="{{ route('kabupaten.index') }}"><i></i> Kabupaten</a></li>
       </ol>
     </section>
 		<div class="col-md-12">
@@ -20,7 +20,7 @@
             <!-- /.box-header -->
             <!-- form start -->
             {{-- <form role="form"> --}}
-          	{!! Form::open(['route'=>'kabupaten.store']) !!}
+          	{!! Form::open(['route'=>'kabupaten.store', 'files' => true]) !!}
               <div class="box-body">
         				<div class="form-group">
         					{!! Form::label('nama_kabupatenkota', 'Nama Kabupaten:', ['class' => 'control-label']) !!}
@@ -29,6 +29,10 @@
                 <div class="form-group">
                   {!! Form::label('pusat_pemerintahan', 'Pusat Pemerintahan:', ['class' => 'control-label']) !!}
                   {!! Form::text('pusat_pemerintahan', null, ['class' => 'form-control']) !!}
+                </div>
+                <div class="form-group">
+                  {!! Form::label('peta_lokasi', 'Peta Lokasi') !!}
+                  {!! Form::file('peta_lokasi', ['class'=>'form-control']) !!}
                 </div>
               </div>
               <!-- /.box-body -->

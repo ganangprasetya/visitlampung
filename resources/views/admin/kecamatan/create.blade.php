@@ -8,7 +8,7 @@
       <ol class="breadcrumb">
         <li><a href="{{ url('/admin') }}"><i class="fa fa-dashboard"></i> Admin</a></li>
         <li><a href="{{ url('/admin/data/objekwisata') }}"><i></i> Objek Wisata</a></li>
-        <li class="active">Kecamatan</li>
+        <li class="active"><a href="{{ route('kecamatan.index') }}"><i></i> Kecamatan</a></li>
       </ol>
     </section>
 		<div class="col-md-12">

@@ -55,6 +55,16 @@
         @else
         <li><a href="{{ url('/admin/transaksi') }}"><i class="fa fa-files-o"></i> <span>Transaksi</span></a></li>
         @endif
+
+        @if (!empty($halaman) && $halaman == 'backup')
+        <li class="active">
+          <a href="{{ url('/admin/backup') }}">
+            <i class="fa fa-file-excel-o"></i> <span>Backup</span>
+          </a>
+        </li>
+        @else
+        <li><a href="{{ url('/admin/backup') }}"><i class="fa fa-file-excel-o"></i> <span>Backup</span></a></li>
+        @endif
         
     </section>
     <!-- /.sidebar -->

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Objekwisata;
 
+use Storage;
+
 
 class ObjekwisataController extends Controller
 {
@@ -39,7 +41,43 @@ class ObjekwisataController extends Controller
      */
     public function store(Request $request)
     {
-        Objekwisata::create($request->all());
+        $input = $request->all();
+        if($request->hasFile('gambar_satu')){
+            $gambar_satu = $request->file('gambar_satu');
+            $ext_satu = $gambar_satu->getClientOriginalExtension();
+
+            if ($request->file('gambar_satu')->isValid()){
+                $gambarsatu_name = "pictone_".date('YmdHis').".$ext_satu";
+                $upload_path = 'img';
+                $request->file('gambar_satu')->move($upload_path, $gambarsatu_name);
+                $input['gambar_satu'] = $gambarsatu_name;
+            }
+        }
+        if($request->hasFile('gambar_dua')){
+            $gambar_dua = $request->file('gambar_dua');
+            $ext_dua = $gambar_dua->getClientOriginalExtension();
+
+            if ($request->file('gambar_dua')->isValid()){
+                $gambardua_name = "picttwo_".date('YmdHis').".$ext_dua";
+                $upload_path = 'img';
+                $request->file('gambar_dua')->move($upload_path, $gambardua_name);
+                $input['gambar_dua'] = $gambardua_name;
+            }
+        }
+        if($request->hasFile('gambar_tiga')){
+            $gambar_tiga = $request->file('gambar_tiga');
+            $ext_tiga = $gambar_tiga->getClientOriginalExtension();
+
+            if ($request->file('gambar_tiga')->isValid()){
+                $gambartiga_name = "pictthree_".date('YmdHis').".$ext_tiga";
+                $upload_path = 'img';
+                $request->file('gambar_tiga')->move($upload_path, $gambartiga_name);
+                $input['gambar_tiga'] = $gambartiga_name;
+            }
+        }
+
+        Objekwisata::create($input);
+        // dd($input['gambar_satu']);
         return redirect()->route('objekwisata.index');
     }
 
@@ -62,7 +100,8 @@ class ObjekwisataController extends Controller
      */
     public function edit($id)
     {
-        //
+        $objekwisata = Objekwisata::findOrFail($id);
+        return view('admin.objekwisata.edit', compact('objekwisata'));
     }
 
     /**
@@ -74,7 +113,56 @@ class ObjekwisataController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $objekwisata = Objekwisata::findOrFail($id);
+        $input = $request->all();
+
+        if($request->hasFile('gambar_satu')){
+            $exist_satu = Storage::disk("gambar_satu")->exists($objekwisata->gambar_satu);
+            if(isset($objekwisata->gambar_satu) && $exist_satu){
+                $delete = Storage::disk('gambar_satu')->delete($objekwisata->gambar_satu);
+            }
+            $gambar_satu = $request->file('gambar_satu');
+            $ext_satu = $gambar_satu->getClientOriginalExtension();
+            if ($request->file('gambar_satu')->isValid()){
+                $gambarsatu_name = "pictone_".date('YmdHis').".$ext_satu";
+                $upload_path = 'img';
+                $request->file('gambar_satu')->move($upload_path, $gambarsatu_name);
+                $input['gambar_satu'] = $gambarsatu_name;
+            }
+        }
+
+        if($request->hasFile('gambar_dua')){
+            $exist_dua = Storage::disk("gambar_dua")->exists($objekwisata->gambar_dua);
+            if(isset($objekwisata->gambar_dua) && $exist_dua){
+                $delete = Storage::disk('gambar_dua')->delete($objekwisata->gambar_dua);
+            }
+            $gambar_dua = $request->file('gambar_dua');
+            $ext_dua = $gambar_dua->getClientOriginalExtension();
+            if ($request->file('gambar_dua')->isValid()){
+                $gambardua_name = "picttwo_".date('YmdHis').".$ext_dua";
+                $upload_path = 'img';
+                $request->file('gambar_dua')->move($upload_path, $gambardua_name);
+                $input['gambar_dua'] = $gambardua_name;
+            }
+        }
+
+        if($request->hasFile('gambar_tiga')){
+            $exist_tiga = Storage::disk("gambar_tiga")->exists($objekwisata->gambar_tiga);
+            if(isset($objekwisata->gambar_tiga) && $exist_tiga){
+                $delete = Storage::disk('gambar_tiga')->delete($objekwisata->gambar_tiga);
+            }
+            $gambar_tiga = $request->file('gambar_tiga');
+            $ext_tiga = $gambar_tiga->getClientOriginalExtension();
+            if ($request->file('gambar_tiga')->isValid()){
+                $gambartiga_name = "pictthree_".date('YmdHis').".$ext_tiga";
+                $upload_path = 'img';
+                $request->file('gambar_tiga')->move($upload_path, $gambartiga_name);
+                $input['gambar_tiga'] = $gambartiga_name;
+            }
+        }
+
+        $objekwisata->update($input);
+        return redirect()->route('objekwisata.index');
     }
 
     /**

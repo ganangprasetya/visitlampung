@@ -42,6 +42,25 @@ return [
     */
 
     'disks' => [
+        'peta_lokasi' => [
+            'driver' => 'local',
+            'root' => public_path('img'),
+        ],
+
+        'gambar_satu' => [
+            'driver' => 'local',
+            'root' => public_path('img'),
+        ],
+
+        'gambar_dua' => [
+            'driver' => 'local',
+            'root' => public_path('img'),
+        ],
+
+        'gambar_tiga' => [
+            'driver' => 'local',
+            'root' => public_path('img'),
+        ],
 
         'local' => [
             'driver' => 'local',

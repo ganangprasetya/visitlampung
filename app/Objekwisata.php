@@ -15,9 +15,9 @@ class Objekwisata extends Model
     	'lat',
     	'long',
     	'info',
-    	'gambar1',
-        'gambar2',
-        'gambar3'
+    	'gambar_satu',
+        'gambar_dua',
+        'gambar_tiga'
     ];
 
     //relasi one to many dari jenis
