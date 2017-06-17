@@ -17,5 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(JenisobjekwisataSeeder::class);
         $this->call(ObjekwisataSeeder::class);
         $this->call(TransaksiSeeder::class);
+        $this->call(UsersSeeder::class);
+        $this->call(BiodataSeeder::class);
+        
     }
 }

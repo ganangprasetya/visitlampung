@@ -26,7 +26,9 @@
                   <th>No</th>
                   <th>Nama Kecamatan</th>
                   <th>Nama Kabupaten</th>
-                  <th>Action</th>
+                  @role('admin')
+                    <th>Action</th>
+                  @endrole
                 </thead>
                 <tbody>
                   @foreach($kecamatan as $objek)
@@ -34,6 +36,7 @@
                       <td>{{ $objek->id }}</td>
                       <td>{{ $objek->nama_kecamatan }}</td>
                       <td>{{ $objek->kabupaten->nama_kabupatenkota }}</td>
+                      @role('admin')
                       <td>
                         <div class="btn-group">
                           <button type="button" class="btn btn-default btn-flat">Action</button>
@@ -52,15 +55,18 @@
                           </ul>
                         </div>
                       </td>
+                      @endrole
                     </tr>
                   @endforeach
                 </tbody>
               </table>
-              <div class="bottom-nav">
-                  <div>
-                    <a href="{{ route('kecamatan.create') }}" class="btn btn-primary">Tambah Data</a>
-                  </div>
-              </div> 
+              @role('admin')
+                <div class="bottom-nav">
+                    <div>
+                      <a href="{{ route('kecamatan.create') }}" class="btn btn-primary">Tambah Data</a>
+                    </div>
+                </div> 
+              @endrole
             </div>
           </div> 
         </div>

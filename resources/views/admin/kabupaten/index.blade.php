@@ -43,14 +43,17 @@
                           <span class="sr-only">Toggle Dropdown</span>
                           </button>
                           <ul class="dropdown-menu" role="menu">
+                          @role('admin')
                           <li><a href="{{ route('kabupaten.edit',$objek->id) }}">Update</a></li>
-
+                          @endrole
                           <li><a href="{{ route('kabupaten.show', $objek->id) }}">Detail</a></li>
+                          @role('admin')
                           <li>
                               {!! Form::open(['method' => 'DELETE', 'action' => ['KabupatenController@destroy', $objek->id]]) !!}
                               {!! Form::submit('Delete', ['class' => 'btn btn-link']) !!}
                               {!! Form::close() !!}
                           </li>
+                          @endrole
                           </ul>
                         </div>
                       </td>
@@ -60,7 +63,9 @@
               </table>
               <div class="bottom-nav">
                   <div>
+                    @role('admin')
                     <a href="{{ route('kabupaten.create') }}" class="btn btn-primary">Tambah Data</a>
+                    @endrole
                   </div>
               </div> 
             </div>

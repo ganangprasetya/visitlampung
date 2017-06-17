@@ -10,6 +10,13 @@ use Session;
 
 class JenisobjekwisataController extends Controller
 {
+    public function __construct()
+    {
+        //Membatasi role->operator
+        $this->middleware('role:admin',['except'=>[
+            'index'
+        ]]);
+    }
     /**
      * Display a listing of the resource.
      *

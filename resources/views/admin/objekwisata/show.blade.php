@@ -69,6 +69,15 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB__8j8_BDA5kVfKJ8Pf-lb64NtkXj7GS0&libraries=places" type="text/javascript"></script>
     <script>
+          // alert('{{ $objekwisata->jenisobjekwisata->jenis_objekwisata }}');
+          // var gicn;
+          // if('{{ $objekwisata->jenisobjekwisata->jenis_objekwisata }}' == 'Alam') {
+          //   alert('alam');
+          //   gicn = 'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png';
+          //  } else if('{{ $objekwisata->jenisobjekwisata->jenis_objekwisata }}' == 'Keluarga') {
+          //   // alert('keluarga');
+          //   gicn = 'https://maps.google.com/mapfiles/kml/shapes/library_maps.png';
+          // }
           var myLatLng = new google.maps.LatLng({{ $objekwisata->lat }}, {{ $objekwisata->long }});
           // alert(myLatLng);
           var map = new google.maps.Map(document.getElementById('map1'),{
@@ -77,6 +86,8 @@
             });
             var marker = new google.maps.Marker({
               position: myLatLng,
+              // icon:gicn,
+              title: '{{ $objekwisata->nama_objekwisata }}',
               map: map
             });
     </script>

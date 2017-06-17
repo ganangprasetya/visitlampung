@@ -25,13 +25,16 @@
                 <thead>
                   <th>No</th>
                   <th>Jenis Objek Wisata</th>
+                  @role('admin')
                   <th>Action</th>
+                  @endrole
                 </thead>
                 <tbody>
                   @foreach($jenisobjekwisata as $objek)
                     <tr>
                       <td>{{ $objek->id }}</td>
                       <td>{{ $objek->jenis_objekwisata}}</td>
+                      @role('admin')
                       <td>
                         <div class="btn-group">
                           <button type="button" class="btn btn-default btn-flat">Action</button>
@@ -49,13 +52,16 @@
                           </ul>
                         </div>
                       </td>
+                      @endrole
                     </tr>
                   @endforeach
                 </tbody>
               </table>
               <div class="bottom-nav">
                   <div>
+                    @role('admin')
                     <a href="{{ route('jenisobjekwisata.create') }}" class="btn btn-primary">Tambah Data</a>
+                    @endrole
                   </div>
               </div> 
             </div>

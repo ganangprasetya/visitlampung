@@ -15,28 +15,35 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-              <i class="fa fa-fw fa-user"></i> Administrator <span class="caret"></span>   
-            </a>
-            <ul class="dropdown-menu" role="menu">
-                <li>
-                  <a href="#">
-                      <i class="fa fa-btn fa-lock"></i> Ubah Password
-                  </a>
-               </li>
-                <li class="divider"></li>
-                  <li>
-                    <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                      <i class="fa fa-btn fa-power-off"></i> Logout
+            <!-- Authentication Links -->
+            @if (Auth::guest())
+                <li><a href="{{ url('/login') }}">Login</a></li>
+                <li><a href="{{ url('/register') }}">Daftar</a></li>
+            @else
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    <i class="fa fa-fw fa-user"></i> {{ Auth::user()->name }} <span class="caret"></span>   
                     </a>
-                  {{-- <form id="logout-form" action="#" method="POST" style="display: none;">
-                    <input type="hidden" name="_token" value="RzCd6UNXuHj37wHh4awRe0ee2WrbpPrPvkRnWOKB">
-                  </form> --}}
-                  </li>
-            </ul>
-          </li>
+
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="{{ url('admin/password') }}">
+                                 <i class="fa fa-btn fa-lock"></i> Ubah Password
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                <i class="fa fa-btn fa-power-off"></i> Logout
+                            </a>
+
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            @endif
         </ul>
       </div>
     </nav>

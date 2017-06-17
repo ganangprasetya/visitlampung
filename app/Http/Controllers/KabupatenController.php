@@ -12,6 +12,14 @@ use Session;
 
 class KabupatenController extends Controller
 {
+    public function __construct()
+    {
+        //Membatasi role->operator
+        $this->middleware('role:admin',['except'=>[
+            'index',
+            'show'
+        ]]);
+    }
     /**
      * Display a listing of the resource.
      *

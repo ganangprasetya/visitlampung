@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laratrust\Traits\LaratrustUserTrait;
 
 class User extends Authenticatable
 {
+    use LaratrustUserTrait;
     use Notifiable;
 
     /**
@@ -34,5 +36,9 @@ class User extends Authenticatable
     //relasi one to one ke transaksi
     public function transaksi(){
         return $this->hasOne('App/Transaksi',"id_user");
+    }
+
+    public function biodata(){
+        return $this->hasOne('App/Biodata',"id_user");
     }
 }
