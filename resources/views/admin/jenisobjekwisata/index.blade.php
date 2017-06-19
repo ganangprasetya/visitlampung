@@ -13,7 +13,7 @@
       </ol>
     </section>
     <div class="row">
-      <div  id="jenisobjekwisata">
+      {{-- <div  id="jenisobjekwisata"> --}}
         <div class="col-sm-12">
           <div class="box">
             <div class="box-header">
@@ -30,9 +30,10 @@
                   @endrole
                 </thead>
                 <tbody>
+                  <?php  $no = 1; ?>
                   @foreach($jenisobjekwisata as $objek)
                     <tr>
-                      <td>{{ $objek->id }}</td>
+                      <td>{{ $no++ }}</td>
                       <td>{{ $objek->jenis_objekwisata}}</td>
                       @role('admin')
                       <td>
@@ -67,7 +68,22 @@
             </div>
           </div> 
         </div>
-      </div> 
+      {{-- </div>  --}}
     </div>
 
+@endsection
+
+@section('scripts')
+  <script>
+  $(function () {
+    $('#jenisobjekwisata').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>
 @endsection

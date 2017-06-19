@@ -164,6 +164,9 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Laratrust\LaratrustServiceProvider::class,
+        niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
+        // Yajra\Datatables\DatatablesServiceProvider::class,
+        // Barryvdh\Snappy\ServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -230,6 +233,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class
+        // 'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        // 'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
 
     ],
 

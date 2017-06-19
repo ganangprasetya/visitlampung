@@ -28,10 +28,10 @@ class CreateBiodataTable extends Migration
             $table->string('alamat');
             $table->string('no_hp')->nullable();
             $table->string('foto')->nullable();
-            $table->double('lat_reg', 20,10);
-            $table->double('long_reg', 20,10);
-            $table->double('lat_now', 20,10);
-            $table->double('long_now', 20,10);
+            $table->double('lat_reg', 10,5);
+            $table->double('lng_reg', 10,5);
+            $table->double('lat_now', 10,5);
+            $table->double('lng_now', 10,5);
             $table->timestamps();
         });
     }

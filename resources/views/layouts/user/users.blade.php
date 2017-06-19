@@ -1,72 +1,115 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin Panel</title>
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel='stylesheet' type='text/css'>
-  <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css') }}" rel='stylesheet' type='text/css'>
-  <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css') }}" rel='stylesheet' type='text/css'>
-  <link href="{{ asset('dist/css/AdminLTE.min.css') }}" rel='stylesheet' type='text/css'>
-  <link href="{{ asset('dist/css/skins/_all-skins.min.css') }}" rel='stylesheet' type='text/css'>
-  <link href="{{ asset('plugins/iCheck/flat/blue.css') }}" rel='stylesheet' type='text/css'>
-  <link href="{{ asset('plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}" rel='stylesheet' type='text/css'>
-  <link href="{{ asset('plugins/datepicker/datepicker3.css') }}" rel='stylesheet' type='text/css'>
-  <link href="{{ asset('plugins/datatables/dataTables.bootstrap.css') }}" rel='stylesheet' type='text/css'>
-  <link href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}" rel='stylesheet' type='text/css'>
-  <link href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}" rel='stylesheet' type='text/css'>
+<style>
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+  #map{
+    display: block;
+    height: 500px;
+    width: 100%;
+    margin: 0 auto;
+    -moz-box-shadow: 0px 5px 20px #ccc;
+    -webkit-box-shadow: 0px 5px 20px #ccc;
+    box-shadow: 0px 5px 10px #ccc;
+  }
+   body {
+     display: flex;
+     min-height: 100vh;
+     flex-direction: column;
+ }
+ main {
+     flex: 1 0 auto;
+ }
+ .tengah{
+  margin-top: 20px;
+ }
+
+  header, main{
+      padding-right: 300px;
+    }
+
+    @media only screen and (max-width : 992px) {
+      header, main, footer {
+        padding-right: 0;
+      }
+    }
+  h1 {
+    text-align: center;
+    font-family: bebas neue;
+    text-shadow: 2px 2px #424242;
+    color: white;
+  }
+  h2 {
+    text-align: center;
+    font-family: bebas neue;
+    text-shadow: 2px 2px #424242;
+    color: white;
+  }
+  h4 {
+    text-align: center;
+    font-family: bebas neue;
+    padding-top: 10px;
+  }
+  h3 {
+    text-align: center;
+    font-family: bebas neue;
+    padding-top: 10px;
+  }
+  .siji {
+    font-size: 40px;
+    font-family: bebas neue;
+    margin-top:45px;
+  }
+</style>
+  <title>Visit Lampung</title>
+  <!--Import Google Icon Font-->
+  <link href="{{ asset('http://fonts.googleapis.com/icon?family=Material+Icons') }}" rel='stylesheet''>
+  <!--Import materialize.css-->
+  <link href="{{ asset('materialize/css/materialize.min.css') }}" rel='stylesheet' media='screen,projection'>
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <html xmlns="http://www.w3.org/1999/xhtml">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+@yield('navbar')
+@yield('sidebar')
+@yield('searchbar')
+<body>
+      <div>
+        @yield('content')
+      </div>
+      @yield('footer')
 
-  @include('layouts.header')
-  <!-- Left side column. contains the logo and sidebar -->
-  @include('layouts.sidebar')
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-  @yield('content')
-    
-  </div>
-  @include('layouts.footer')
-</div>
-
-<!-- Script -->
-
-<script src="{{ asset('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
-<script src="{{ asset('https://code.jquery.com/ui/1.11.4/jquery-ui.min.js') }}"></script>
-<script>
-  $.widget.bridge('uibutton', $.ui.button);
-</script>
-<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js') }}"></script>
-<script src="{{ asset('plugins/sparkline/jquery.sparkline.min.js') }}"></script>
-<script src="{{ asset('plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
-<script src="{{ asset('plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
-<script src="{{ asset('plugins/knob/jquery.knob.js') }}"></script>
-<script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js') }}"></script>
-<script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
-<script src="{{ asset('plugins/datepicker/bootstrap-datepicker.js') }}"></script>
-<script src="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
-<script src="{{ asset('plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
-<script src="{{ asset('plugins/fastclick/fastclick.js') }}"></script>
-<script src="{{ asset('dist/js/app.min.js') }}"></script>
-<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
-<script src="{{ asset('dist/js/demo.js') }}"></script>
-<script src="{{ asset('plugins/flot/jquery.flot.min.js') }}"></script>
-<script src="{{ asset('plugins/flot/jquery.flot.resize.min.js') }}"></script>
-<script src="{{ asset('plugins/flot/jquery.flot.pie.min.js') }}"></script>
-<script src="{{ asset('plugins/flot/jquery.flot.categories.min.js') }}"></script>
-@yield('scripts')
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB__8j8_BDA5kVfKJ8Pf-lb64NtkXj7GS0&libraries=places" type="text/javascript"></script>
+  <!--Import jQuery before materialize.js-->
+  <script src="{{ asset('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+  <script src="{{ asset('https://code.jquery.com/ui/1.11.4/jquery-ui.min.js') }}"></script>
+  <script src="{{ asset('materialize/js/materialize.min.js') }}"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.button-collapse').sideNav({
+        menuWidth: 300, // Default is 300
+        edge: 'right', // Choose the horizontal origin
+        closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        draggable: true // Choose whether you can drag to open on touch screens
+          }
+      );
+      $('.materialboxed').materialbox();
+      $('.modal').modal({
+        dismissible: true, // Modal can be dismissed by clicking outside of the modal
+        opacity: .5, // Opacity of modal background
+        inDuration: 300, // Transition in duration
+        outDuration: 200, // Transition out duration
+        startingTop: '4%', // Starting top style attribute
+        endingTop: '10%', // Ending top style attribute
+        ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+          console.log(modal, trigger);
+        },
+    }
+  );
+      $('#modal1').modal('open');
+    });
+  </script>
+  @yield('script')
 </body>
+
 </html>

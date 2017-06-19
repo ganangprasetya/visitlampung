@@ -9,7 +9,8 @@ class Jenisobjekwisata extends Model
     protected $table = 'jenis_objekwisata';
 
     protected $fillable = [
-    	'jenis_objekwisata'
+    	'jenis_objekwisata',
+    	'foto'
     ];
 
     //relasi one to many ke detailobjekwisata

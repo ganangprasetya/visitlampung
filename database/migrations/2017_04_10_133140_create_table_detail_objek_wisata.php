@@ -17,8 +17,8 @@ class CreateTableDetailObjekWisata extends Migration
             $table->string('nama_objekwisata', 50);
             $table->integer('id_jenis')->unsigned();
             $table->integer('id_lokasi')->unsigned();
-            $table->double('lat', 20,10);
-            $table->double('long', 20,10);
+            $table->double('lat', 10,5);
+            $table->double('lng', 10,5);
             $table->text('info');
             $table->string('gambar_satu')->nullable();
             $table->string('gambar_dua')->nullable();

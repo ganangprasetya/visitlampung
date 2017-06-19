@@ -15,6 +15,7 @@ class CreateTableJenisObjekwisata extends Migration
         Schema::create('jenis_objekwisata', function (Blueprint $table) {
             $table->increments('id');
             $table->string('jenis_objekwisata',10);
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
         Schema::table('detail_objek_wisata', function (Blueprint $table) {

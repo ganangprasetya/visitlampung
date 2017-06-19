@@ -12,7 +12,7 @@
       </ol>
     </section>
     <div class="row">
-      <div  id="objekwisata">
+      {{-- <div  id="objekwisata"> --}}
         <div class="col-sm-10">
           <div class="box">
             <div class="box-header">
@@ -28,19 +28,18 @@
                   <th>Lokasi</th>
                   <th>Latitude</th>
                   <th>Longitude</th>
-                  <th>Info</th>
                   <th>Action</th>
                 </thead>
                 <tbody>
+                  <?php  $no = 1; ?>
                   @foreach($objekwisata as $objek)
                     <tr>
-                      <td>{{ $objek->id }}</td>
+                      <td>{{ $no++ }}</td>
                       <td>{{ $objek->nama_objekwisata }}</td>
                       <td>{{ $objek->jenisobjekwisata->jenis_objekwisata }}</td>
                       <td>{{ $objek->lokasi->desa_kelurahan }}</td>
                       <td>{{ $objek->lat }}</td>
-                      <td>{{ $objek->long }}</td>
-                      <td>{{ $objek->info }}</td>
+                      <td>{{ $objek->lng }}</td>
                       <td>
                         <div class="btn-group">
                           <button type="button" class="btn btn-default btn-flat">Action</button>
@@ -77,7 +76,7 @@
             </div>
           </div> 
         </div>
-      </div> 
+      {{-- </div>  --}}
       <div class="col-sm-2">
         <div class="box">
           <div class="box-header">
@@ -106,4 +105,18 @@
       </div>
     </div>
 
+@endsection
+@section('scripts')
+  <script>
+  $(function () {
+    $('#objekwisata').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>
 @endsection

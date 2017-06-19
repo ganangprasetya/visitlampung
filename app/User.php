@@ -35,10 +35,10 @@ class User extends Authenticatable
 
     //relasi one to one ke transaksi
     public function transaksi(){
-        return $this->hasOne('App/Transaksi',"id_user");
+        return $this->hasOne('App\Transaksi',"id_user");
     }
 
     public function biodata(){
-        return $this->hasOne('App/Biodata',"id_user");
+        return $this->hasOne('App\Biodata',"user_id");
     }
 }

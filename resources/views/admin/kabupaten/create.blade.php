@@ -47,14 +47,14 @@
                 @if ($errors->any())
                   <div class="form-group {{ $errors->has('peta_lokasi') ? 'has-error' : 'has-success' }}">
                 @else
-                    <div class="form-group">
+                  <div class="form-group">
                 @endif
                     {!! Form::label('peta_lokasi', 'Peta Lokasi') !!}
                     {!! Form::file('peta_lokasi', ['class'=>'form-control']) !!}
                 @if ($errors->has('peta_lokasi'))
                     <span class="help-block">{{ $errors->first('peta_lokasi') }}</span>
                 @endif
-                </div>
+                  </div>
               </div>
               <!-- /.box-body -->
               <div class="box-footer">

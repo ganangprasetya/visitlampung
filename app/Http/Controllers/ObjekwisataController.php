@@ -58,11 +58,9 @@ class ObjekwisataController extends Controller
                 'id_jenis' => 'required',
                 'id_lokasi' => 'required',
                 'lat' => 'required',
-                'long' => 'required',
+                'lng' => 'required',
                 'info' => 'required',
                 'gambar_satu' => 'required|image|max:500|mimes:jpeg,jpg,bmp,png',
-                'gambar_dua' => 'required|image|max:500|mimes:jpeg,jpg,bmp,png',
-                'gambar_tiga' => 'required|image|max:500|mimes:jpeg,jpg,bmp,png',
             ]);
             if($request->hasFile('gambar_satu')){
                 $gambar_satu = $request->file('gambar_satu');
@@ -145,7 +143,7 @@ class ObjekwisataController extends Controller
                 'id_jenis' => 'required',
                 'id_lokasi' => 'required',
                 'lat' => 'required',
-                'long' => 'required',
+                'lng' => 'required',
                 'info' => 'required',
                 'gambar_satu' => 'sometimes|image|max:500|mimes:jpeg,jpg,bmp,png',
                 'gambar_dua' => 'sometimes|image|max:500|mimes:jpeg,jpg,bmp,png',

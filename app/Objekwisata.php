@@ -13,7 +13,7 @@ class Objekwisata extends Model
     	'id_jenis',
     	'id_lokasi',
     	'lat',
-    	'long',
+    	'lng',
     	'info',
     	'gambar_satu',
         'gambar_dua',
@@ -32,6 +32,6 @@ class Objekwisata extends Model
 
     //relasi one to one ke transaksi
     public function transaksi(){
-        return $this->hasOne('App/Transaksi',"id_objekwisata");
+        return $this->hasOne('App\Transaksi',"id_objekwisata");
     }
 }

@@ -34,14 +34,14 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>22</h3>
+              <h3>{{ $jumlah_user }}</h3>
 
               <p>User Registrations</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="#" class="small-box-footer">Tampilkan Semua <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ route('users.index') }}" class="small-box-footer">Tampilkan Semua <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 

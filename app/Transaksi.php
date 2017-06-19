@@ -14,11 +14,11 @@ class Transaksi extends Model
     ];
     //one to one
     public function objekwisata(){
-    	return $this->belongsTo('App/Objekwisata',"id_objekwisata");
+    	return $this->belongsTo('App\Objekwisata',"id_objekwisata");
     }
 
     //one to one
     public function user(){
-    	return $this->belongsTo('App/User',"id_user");
+    	return $this->belongsTo('App\User',"id_user");
     }
 }

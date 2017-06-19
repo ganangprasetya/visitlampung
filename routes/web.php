@@ -10,10 +10,20 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware'=>'auth'], function() {
+	Route::resource('/', 'KategoriController');
+	Route::get('/wisata', function () {
+	    return view('users.front.wisata');
+	});
+	
+	Route::get('/profile', function () {
+	    return view('users.front.profile');
+	});
+	
 });
+Route::get('/searchbymap', function () {
+	    return view('users.front.searchbymap');
+	});
 
 Auth::routes();
 Route::get('/home', 'HomeController@index');
@@ -35,20 +45,11 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin|kepaladinas']]
 			Route::resource('lokasi', 'LokasiController');
 		});
 		Route::resource('objekwisata', 'ObjekwisataController');
-		Route::get('users', function () {
-			$halaman = 'users';
-		    return view('admin.users.index', compact('halaman'));
-		});
+		Route::resource('users', 'UsersController');
 	});
-	Route::get('transaksi', function () {
-		$halaman = 'transaksi';
-	    return view('admin.transaksi.index', compact('halaman'));
-	});
+	Route::resource('transaksi', 'TransaksiController');
 
-	Route::get('backup', function () {
-		$halaman = 'backup';
-	    return view('admin.backup.index', compact('halaman'));
-	});
+	Route::resource('backup', 'BackupController');
 
 });
 
@@ -89,6 +90,12 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin|kepaladinas']]
 
 
 
-
+//test cetak PDF
+Route::get('pdf', function() {
+	// $pdf = PDF::loadView('pdf');
+	// return $pdf->download('invoice.pdf');
+	$pdf = PDF::loadView('pdf');
+	return $pdf->stream('document.pdf');
+});
 
 

@@ -20,7 +20,7 @@
             <!-- /.box-header -->
             <!-- form start -->
             {{-- <form role="form"> --}}
-          	{!! Form::model($jenisobjekwisata, ['method' => 'PATCH', 'action' => ['JenisobjekwisataController@update', $jenisobjekwisata->id]]) !!}
+          	{!! Form::model($jenisobjekwisata, ['method' => 'PATCH', 'action' => ['JenisobjekwisataController@update', $jenisobjekwisata->id], 'files' => true]) !!}
               <div class="box-body">
                 @if ($errors->any())
                   <div class="form-group {{ $errors->has('jenis_objekwisata') ? 'has-error' : 'has-success' }}">
@@ -33,6 +33,24 @@
                       <span class="help-block">{{ $errors->first('jenis_objekwisata') }}</span>
                 @endif
                 </div>
+
+                @if ($errors->any())
+                  <div class="form-group {{ $errors->has('foto') ? 'has-error' : 'has-success' }}">
+                @else
+                 <div class="form-group">
+                @endif
+                  {!! Form::label('foto', 'Foto') !!}
+                  {!! Form::file('foto', ['class'=>'form-control']) !!}
+                @if ($errors->has('foto'))
+                    <span class="help-block">{{ $errors->first('foto') }}</span>
+                @endif
+                &nbsp;
+                  @if(isset($jenisobjekwisata) && $jenisobjekwisata->foto)
+                    <p>
+                      {!! Html::image(asset('img/'.$jenisobjekwisata->foto),null,['class'=>'img-rounded img-responsive','width'=>'300px']) !!}
+                    </p>
+                  @endif
+              </div>
               </div>
               <!-- /.box-body -->
               <div class="box-footer">

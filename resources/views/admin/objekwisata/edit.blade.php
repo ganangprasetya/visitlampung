@@ -75,14 +75,14 @@
                 </div>
 
                 @if ($errors->any())
-                  <div class="form-group {{ $errors->has('long') ? 'has-error' : 'has-success' }}">
+                  <div class="form-group {{ $errors->has('lng') ? 'has-error' : 'has-success' }}">
                 @else
                   <div class="form-group">
                 @endif
-                  {!! Form::label('long', 'Lng', ['class' => 'control-label']) !!}
-                  {!! Form::text('long', null, ['class' => 'form-control']) !!}
-                @if ($errors->has('long'))
-                    <span class="help-block">{{ $errors->first('long') }}</span>
+                  {!! Form::label('lng', 'Lng', ['class' => 'control-label']) !!}
+                  {!! Form::text('lng', null, ['class' => 'form-control']) !!}
+                @if ($errors->has('lng'))
+                    <span class="help-block">{{ $errors->first('lng') }}</span>
                 @endif
                 </div>
 
@@ -168,8 +168,8 @@
         <script type="text/javascript">
           // var lat = $('#lat').val();
           // var long = $('#long').val();
-          myLatLng = new google.maps.LatLng($('#lat').val(), $('#long').val());
-          // alert(lat + " "+ long);
+          myLatLng = new google.maps.LatLng($('#lat').val(), $('#lng').val());
+          // alert(lat + " "+ lng);
           // alert(myLatLng);
 
           var map = new google.maps.Map(document.getElementById('map-canvas'),{
@@ -199,10 +199,10 @@
           
             google.maps.event.addListener(marker, 'position_changed', function(){
               var lat = marker.getPosition().lat();
-              var long = marker.getPosition().lng();
+              var lng = marker.getPosition().lng();
 
               $('#lat').val(lat);
-              $('#long').val(long);
+              $('#lng').val(lng);
           });
         </script>
 @endsection

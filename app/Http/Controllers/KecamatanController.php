@@ -12,7 +12,7 @@ class KecamatanController extends Controller
 {
     public function __construct()
     {
-        //Membatasi role->operator
+        //Membatasi role->kepala dinas
         $this->middleware('role:admin',['except'=>[
             'index'
         ]]);
@@ -111,4 +111,5 @@ class KecamatanController extends Controller
         Session::flash('flash_message','Data Kecamatan berhasil dihapus.');
         return redirect()->route('kecamatan.index');
     }
+    
 }

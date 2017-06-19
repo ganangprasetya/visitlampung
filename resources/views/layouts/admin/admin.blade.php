@@ -3,11 +3,11 @@
 <head>
 <style type="text/css">
   #map-canvas{
-    width: 900px;
+    width: 100%;
     height: 300px;
   }
   #map1{
-    width: 1100px;
+    width: 100%;
     height: 300px;
   }
 </style>
@@ -47,7 +47,7 @@
     
   </div>
   @include('layouts.admin.footer')
-</div>
+  </div>
 
 <!-- Script -->
 

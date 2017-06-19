@@ -18,12 +18,12 @@ class Biodata extends Model
         'no_hp',
         'foto',
         'lat_reg',
-        'long_reg',
+        'lng_reg',
         'lat_now',
-        'long_now'
+        'lng_now'
     ];
 
     public function user(){
-    	return $this->belongsTo('App/User',"id_user");
+    	return $this->belongsTo('App\User',"user_id");
     }
 }
