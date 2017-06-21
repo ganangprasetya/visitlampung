@@ -10,20 +10,34 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+setlocale(LC_TIME, 'id');
 Route::group(['middleware'=>'auth'], function() {
-	Route::resource('/', 'KategoriController');
-	Route::get('/wisata', function () {
-	    return view('users.front.wisata');
+	Route::get('/', function() {
+		return redirect()->route('kategori.index');
 	});
+	Route::get('kategori/wisata/{wisata}', 'WisataController@show')->name('kategori.wisata.show');
+	Route::resource('kategori/wisata/navigasi', 'NavigasiController');
+	Route::resource('kategori', 'KategoriController');
+	// Route::resource('/biodata', 'BiodataController');
+	// Route::get('/wisata', function () {
+	//     return view('users.front.wisata');
+	// });
 	
-	Route::get('/profile', function () {
-	    return view('users.front.profile');
-	});
+	// Route::get('/profile', function () {
+	//     return view('users.front.profile');
+	// });
 	
-});
-Route::get('/searchbymap', function () {
+	Route::resource('biodata', 'BiodataController');
+
+	Route::get('/searchbymap', function () {
 	    return view('users.front.searchbymap');
 	});
+
+	Route::get('/navigasi', function () {
+	    return view('users.front.navigasi');
+	});
+
+});
 
 Auth::routes();
 Route::get('/home', 'HomeController@index');
@@ -47,6 +61,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin|kepaladinas']]
 		Route::resource('objekwisata', 'ObjekwisataController');
 		Route::resource('users', 'UsersController');
 	});
+	Route::get('transaksi/pdf', 'TransaksiController@pdf')->name('transaksi.pdf');
 	Route::resource('transaksi', 'TransaksiController');
 
 	Route::resource('backup', 'BackupController');
@@ -91,11 +106,11 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin|kepaladinas']]
 
 
 //test cetak PDF
-Route::get('pdf', function() {
-	// $pdf = PDF::loadView('pdf');
-	// return $pdf->download('invoice.pdf');
-	$pdf = PDF::loadView('pdf');
-	return $pdf->stream('document.pdf');
-});
+// Route::get('pdf', function() {
+// 	// $pdf = PDF::loadView('pdf');
+// 	// return $pdf->download('invoice.pdf');
+// 	$pdf = PDF::loadView('pdf');
+// 	return $pdf->stream('document.pdf');
+// });
 
 

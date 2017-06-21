@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Transaksi;
-
+use App\Objekwisata;
 use Session;
 
 use App\Role;
+use PDF;
+use Carbon\Carbon;
 
 class TransaksiController extends Controller
 {
@@ -97,4 +99,21 @@ class TransaksiController extends Controller
     {
         //
     }
+
+    public function pdf()
+    {   
+        $transaksi = Transaksi::all();
+        $objekwisata = Objekwisata::all();
+        
+        $tanggal = Carbon::now()->format('d/m/Y');
+        $bulan = Carbon::now()->formatLocalized('%B');
+        $hari = Carbon::now()->format('d');
+        $bulan1 = Carbon::now()->format('m');
+        $tahun = Carbon::now()->format('Y');
+
+        $pdf = PDF::loadView('pdf',compact('transaksi', 'objekwisata','tanggal','bulan','hari','bulan1','tahun'));
+        return $pdf->stream('transaksi-'.date('YmdHis').'.pdf');
+    }
+    
+
 }

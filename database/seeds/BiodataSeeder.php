@@ -21,10 +21,10 @@ class BiodataSeeder extends Seeder
     	$paulus->jenis_kelamin = 'L';
     	$paulus->alamat = 'Jln. Tarsus, Indonesia';
     	$paulus->no_hp = '082124020675';
-    	$paulus->lat_reg = -5.554455544;
-    	$paulus->long_reg = 105.554455544;
-    	$paulus->lat_now = -5.554455544;
-    	$paulus->long_now = 105.554455544;
+    	$paulus->lat_reg = -5.5544;
+    	$paulus->long_reg = 105.5544;
+    	$paulus->lat_now = -5.55445;
+    	$paulus->long_now = 105.55445;
     	$paulus->save();
     }
 }

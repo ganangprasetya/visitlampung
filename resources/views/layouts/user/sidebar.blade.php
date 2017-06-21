@@ -2,11 +2,11 @@
   <li>
     <div class="userView">
       <div class="background">
-        <img src="img/background.png">
+        <img src="{{ asset('img/background.png') }}">
       </div>
-      <a href="#"><img class="circle responsive-img" width="400" src="img/peta_20170616122359.png"></a>
-      <a href="#"><span class="white-text name">John Doe</span></a>
-      <a href="#"><span class="white-text email">jdandturk@gmail.com</span></a>
+      <a href="#"><img class="circle responsive-img" width="400" src="{{ asset('img/'.Auth::user()->biodata->foto) }}"></a>
+      <a href="{ url('/profile') }}"><span class="white-text name"> {{ Auth::user()->name }} </span></a>
+      <a href="{ url('/profile') }}"><span class="white-text email">{{ Auth::user()->email }}</span></a>
     </div>
   </li>
     <li>
@@ -14,7 +14,7 @@
         
       </div>
     </li>
-    <li><a class="waves-effect" href="{{url('/profile')}}"><i class="material-icons">perm_identity</i>Profile</a></li>
+    <li><a class="waves-effect" href="{{ route('biodata.index') }}"><i class="material-icons">perm_identity</i>Profile</a></li>
     <li>
         <a " href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
         <i class="material-icons">power_settings_new</i> Logout

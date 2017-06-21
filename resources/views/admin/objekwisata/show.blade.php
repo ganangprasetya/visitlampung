@@ -69,7 +69,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB__8j8_BDA5kVfKJ8Pf-lb64NtkXj7GS0&libraries=places" type="text/javascript"></script>
     <script>
-          // alert('{{ $objekwisata->jenisobjekwisata->jenis_objekwisata }}');
           var gicn;
           if('{{ $objekwisata->jenisobjekwisata->jenis_objekwisata }}' == 'Alam') {
             // alert('alam');

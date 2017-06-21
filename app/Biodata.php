@@ -17,11 +17,11 @@ class Biodata extends Model
         'alamat',
         'no_hp',
         'foto',
-        'lat_reg',
-        'lng_reg',
-        'lat_now',
-        'lng_now'
+        'lat',
+        'lng'
     ];
+
+    protected $dates = ['tanggal_lahir'];
 
     public function user(){
     	return $this->belongsTo('App\User',"user_id");

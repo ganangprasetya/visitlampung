@@ -53,10 +53,10 @@
 	<table width="1000" border="0" style="margin-bottom:30;">
 		<tr>
 			<td width="720">
-				<p class="small times"><b>No Laporan : </b>LP/2017/LTKW/01/21</p>
+				<p class="small times"><b>No Laporan : </b>LP/{{ $tahun }}/LTKW/{{ $bulan1 }}/{{ $hari }}</p>
 			</td>
 			<td>
-				<p class="xsmall times">Bandar Lampung, 21/01/2017</p>
+				<p class="xsmall times">Bandar Lampung, {{ $tanggal }}</p>
 			</td>
 		</tr>
 	</table>
@@ -65,7 +65,7 @@
 			<td>
 				<br>
 				<br>
-				<p class="xsmall times"><b>Bulan : </b>Januari</p>
+				<p class="xsmall times"><b>Bulan : </b>{{ $bulan }}</p>
 			</td>
 		</tr>
 	</table>
@@ -75,21 +75,29 @@
 		    <th>Nama Objek Wisata</th> 
 		    <th>Jumlah Kunjungan</th>
 	  	</tr>
-	  	<tr>
-		    <td class="center">1</td>
-		    <td class="center">Pantai Mutun</td> 
-		    <td class="center">1000</td>
-	  	</tr>
-	  	<tr>
-		    <td class="center">2</td>
-		    <td class="center">Pantai Klara</td> 
-		    <td class="center">1000</td>
-	  	</tr>
-	  	<tr>
-		    <td class="center">3</td>
-		    <td class="center">Pantai Dewi Mandapa</td> 
-		    <td class="center">1000</td>
-	  	</tr>
+	  	<?php 
+	  		$no = 1 ;
+
+	  		// $test = [];
+	  	?>
+		{{-- @for ($i = 0; $i < sizeof($wisata_unik); $i++)
+			<tr>
+				<td>{{ $wisata_unik[$i] }}</td>
+			</tr>
+		@endfor --}}
+
+	  	@foreach ($objekwisata as $objek)
+		  	<tr>
+				<td class="center">{{ $no++ }}</td>
+				<td class="center">{{ $objek->nama_objekwisata }}</td> 
+				<td class="center">{{ $transaksi->where('id_objekwisata',$objek->id)->count() }}</td>
+		  	</tr>
+	  	@endforeach
+	  	{{-- @for ($i = 0; $i < sizeof($wisata); $i++)
+	  		<tr>
+	  			<td>{{ $wisata[$i] }}</td>
+	  		</tr>
+	  	@endfor --}}
 	</table>
 	<br>
 	<br>
@@ -98,9 +106,9 @@
 	<table width="1000" border="0">
 		<tr>
 			<td>
-				<p class="med times"><b>Total Kunjungan/Bulan :</b> 3000 orang</p>
+				<p class="med times"><b>Total Kunjungan/Bulan :</b> {{ $transaksi->count() }} orang</p>
 				<br>
-				<p class="med times"><b>Jumlah Objek Wisata yang Dikunjungi :</b> 10</p>
+				<p class="med times"><b>Jumlah Objek Wisata yang Dikunjungi :</b> {{ $objekwisata->count() }}</p>
 			</td>
 		</tr>
 	</table>

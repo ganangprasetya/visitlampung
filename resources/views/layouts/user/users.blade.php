@@ -2,7 +2,6 @@
 <html>
 <head>
 <style>
-
   #map{
     display: block;
     height: 500px;
@@ -71,10 +70,10 @@
   <html xmlns="http://www.w3.org/1999/xhtml">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
-@yield('navbar')
-@yield('sidebar')
-@yield('searchbar')
 <body>
+    @yield('navbar')
+    @yield('sidebar')
+    @yield('searchbar')
       <div>
         @yield('content')
       </div>
@@ -93,21 +92,22 @@
         draggable: true // Choose whether you can drag to open on touch screens
           }
       );
+      $('.collapsible').collapsible();
+      $('.carousel').carousel();
       $('.materialboxed').materialbox();
       $('.modal').modal({
         dismissible: true, // Modal can be dismissed by clicking outside of the modal
-        opacity: .5, // Opacity of modal background
-        inDuration: 300, // Transition in duration
+        opacity: .10, // Opacity of modal background
+        inDuration: 200, // Transition in duration
         outDuration: 200, // Transition out duration
         startingTop: '4%', // Starting top style attribute
-        endingTop: '10%', // Ending top style attribute
+        endingBottom: '10%', // Ending top style attribute
         ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
           console.log(modal, trigger);
-        },
-    }
-  );
-      $('#modal1').modal('open');
-    });
+        }
+       }
+     );
+  });
   </script>
   @yield('script')
 </body>

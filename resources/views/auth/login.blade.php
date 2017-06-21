@@ -41,7 +41,7 @@
                     <br>
                     <div class="form-group">
                         <div class="input-field col s12">
-                            <p>Belum Punya Akun? <a class="waves-effect waves-teal btn-flat" href="{{ url('/register') }}"> Register</a></p>
+                            <p>Belum Punya Akun? <a class="waves-effect waves-teal btn-flat" href="{{ url('/register') }}"> Registrasi</a></p>
                         </div>
                         <div class="row">
                             <div class="col s12">

@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Jenisobjekwisata;
-
 use App\Objekwisata;
+use App\Transaksi;
+use Illuminate\Support\Facades\Auth;
 
-class KategoriController extends Controller
+class NavigasiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,7 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $kategori = Jenisobjekwisata::all();
-        return view('users.front.index', compact('kategori'));
+        
     }
 
     /**
@@ -39,7 +38,11 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $input['id_user'] = Auth::user()->id;
+        Transaksi::create($input);
+
+        return redirect()->route('kategori.index');
     }
 
     /**
@@ -50,21 +53,25 @@ class KategoriController extends Controller
      */
     public function show($id)
     {
-        $jenisobjekwisata = Jenisobjekwisata::findOrFail($id);
+        $navigasi = Objekwisata::findOrFail($id);
+        return view('users/front/navigasi', compact('navigasi'));
+        // $objekwisata = Objekwisata::findOrFail($id);
 
-        $objekwisata = Objekwisata::all();
-        $detail_objekwisata = $objekwisata->where('id_jenis',$jenisobjekwisata->id);
+        // // var_dump($objekwisata->nama_objekwisata);
+        // // $jenisobjekwisata = Jenisobjekwisata::findOrFail($id);
 
-        // $detail = [];
-        // foreach($detail_objekwisata as $test) {
-        //     $detail[] = $test->nama_objekwisata;
-        // }
+        // // $objekwisata = Objekwisata::all();
+        // // $detail_objekwisata = $objekwisata->where('id_jenis',$jenisobjekwisata->id);
 
-        // print_r($jenisobjekwisata->jenis_objekwisata);
-        // echo "<br>";
-        // var_dump($detail);
-        return view('users.front.wisata', compact('jenisobjekwisata','detail_objekwisata'));
+        // // $detail = [];
+        // // foreach($detail_objekwisata as $test) {
+        // //     $detail[] = $test->nama_objekwisata;
+        // // }
 
+        // // print_r($jenisobjekwisata->jenis_objekwisata);
+        // // echo "<br>";
+        // // var_dump($jumlah);
+        // return view('users.front.id', compact('objekwisata', 'jumlah'));
     }
 
     /**
@@ -100,13 +107,4 @@ class KategoriController extends Controller
     {
         //
     }
-
-    public function searchWisatas(Request $request){
-        $lat = $request->lat;
-        $lng = $request->lng;
-        $id = $request->id;
-        $wisatas = Objekwisata::whereBetween('lat',[$lat-0.1,$lat+0.1])->whereBetween('lng',[$lng-0.1,$lng+0.1])->get();
-        return $wisatas;
-    }
-
 }

@@ -64,7 +64,7 @@
               <br>
                 <div class="bottom-nav">
                     <div>
-                      <a href="#" class="btn btn-primary">Cetak Transaksi</a>
+                      <a href="{{ route('transaksi.pdf') }}" class="btn btn-primary" target="_blank">Cetak Transaksi</a>
                     </div>
                 </div> 
               @endrole

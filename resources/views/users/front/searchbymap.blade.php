@@ -42,16 +42,17 @@
 	<script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJJqFsY-whvD7t71FiFtq_nT-xC5OUteY&libraries=places"></script>
 	<script type="text/javascript">
 		
-		var map, myLatLng, radius;
+		var map, myLatLng;
+		// var radius;
 		$(document).ready(function(){
-		$('#radius').on('change', function(e){
-		  // console.log(e);
+		// $('#radius').on('change', function(e){
+		//   // console.log(e);
 
-		  radius = e.target.value;
+		//   radius = e.target.value;
 
-		  // alert(radius);
-		  geoLocationInit();
-		});
+		//   // alert(radius);
+		//   geoLocationInit();
+		// });
 		// setInterval(geoLocationInit,1000);
 		// myVar = setTimeout(geoLocationInit, 1000);
 		// clearTimeout(myVar);
@@ -92,6 +93,12 @@
 		    });
 		}
 
+		var wisata = 
+			'<div class="row" id="wisata">'+
+			'<p><a href="{{ route('kategori.wisata.show',4) }}"><i class="medium material-icons">navigation</i>GO HERE</a>'+
+            '</div>'+
+            '</div>';
+
 
 		function createMarker(latlng, icn, name){
 			var marker = new google.maps.Marker({
@@ -100,16 +107,24 @@
 			    icon: icn,
 			    title: name
 				});
+			var infowindow = new google.maps.InfoWindow({
+	          	content: wisata
+	        });
+	        marker.addListener('click', function() {
+	          infowindow.open(map, marker);
+	        });
 		}
 		function searchWisatas(lat,lng){
-		$.post('http://localhost/tugasakhir/public/api/searchWisatas', {lat:lat, lng:lng}, function(match){
+		$.post('{{ url('/api/searchWisatas') }}', {lat:lat, lng:lng}, function(match){
 			$.each(match, function(i, val){
 				var glatval=val.lat;
 				var glngval=val.lng;
 				var gname =val.nama_objekwisata;
+				var gid = val.id;
 				var GLatLng = new google.maps.LatLng(glatval, glngval);
 				var gicn = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
 				createMarker(GLatLng,gicn,gname);
+				// alert(val.id)
 			});
 
 		});

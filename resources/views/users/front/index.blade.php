@@ -8,10 +8,6 @@
 	@include('layouts.user.sidebar')
 @endsection
 
-@section('searchbar')
-	@include('layouts.user.searchbar')
-@endsection
-
 @section('content')
 	<div class="row">
 		<div class="col s12 z-depth-2 teal lighten-2">
@@ -32,7 +28,7 @@
 			      	</div>
 			      	<div class="col s6">
 			      		<h4 class="black-text" >{{ $objek->jenis_objekwisata}}</h4>
-		              	<center><a href="{{url('/wisata')}}" class="waves-effect waves-light btn-large">Lihat Daftar Wisata</a></center>
+		              	<center><a href="{{ route('kategori.show',$objek->id) }}" class="waves-effect waves-light btn-large">Lihat Daftar Wisata</a></center>
 			      	</div>
 		      	</div>
 		    </div>
