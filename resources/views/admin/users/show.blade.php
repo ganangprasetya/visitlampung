@@ -58,7 +58,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB__8j8_BDA5kVfKJ8Pf-lb64NtkXj7GS0&libraries=places" type="text/javascript"></script>
     <script>
-          var myLatLng = new google.maps.LatLng({{ $users->biodata->lat_now }}, {{ $users->biodata->lng_now }});
+          var myLatLng = new google.maps.LatLng({{ $users->biodata->lat }}, {{ $users->biodata->lng }});
           // alert(myLatLng);
           var map = new google.maps.Map(document.getElementById('map1'),{
               center:myLatLng,

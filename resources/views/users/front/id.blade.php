@@ -7,9 +7,6 @@
 @section('sidebar')
 	@include('layouts.user.sidebar')
 @endsection
-@section('profile')
-<li><a class="waves-effect" href="{{ route('biodata.index') }}"><i class="material-icons">perm_identity</i>Profile</a></li>
-@endsection
 
 @section('content')
 	<div>

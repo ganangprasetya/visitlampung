@@ -13,8 +13,9 @@
 		<div class="col s12 grey lighten-4">
 			<div id="map"></div>
 			<div id="kiri"></div>
-			{!! Form::open(['route'=>'navigasi.store','method'=>'post']) !!}
+			{!! Form::open(['route'=>'navigasi.store','method'=>'post','id'=>'formloop']) !!}
 				{!! Form::hidden('id_objekwisata', $navigasi->id) !!}
+				{!! Form::hidden('distance2', null, ['id'=>'distance2']) !!}
 				{!! Form::submit('SELESAI', ['class' => 'waves-effect waves-light btn-large', 'id'=>'transaksi','style'=>'width:100%;']) !!}
 			{!! Form::close() !!}
 			{{-- <a id="transaksi" style="width:100%; margin-top: -30px;" class="waves-effect waves-light btn-large" href="{{ route('navigasi.store') }}">SELESAI</a> --}}
@@ -26,11 +27,33 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJJqFsY-whvD7t71FiFtq_nT-xC5OUteY"></script>
 	<script>
 	$(document).ready(function(){
-		$('#transaksi').on('click', function() {
-			alert('Terima kasih');
-		});
+		// var coba = $('#test');
 
+		//looping nilai
+		setInterval(function() {
+			looping();
+		}, 1000);
+
+
+		//tombol hilang dan muncul
+		function looping() {
+			var jarak = $('#distance2');
+			// console.log(jarak.val());
+			var form = $('#formloop');
+			if(jarak.val() > 100) {
+				form.show();
+			}
+		}
+		
+
+		$('#transaksi').on('click', function() {
+			alert('Terimakasih telah menggunakan aplikasi kami');
+		});
 		geoLocationInit();
+		setInterval(function(){
+			// $('#kiri').empty();
+			geoLocationInit();
+		},20000);
 		function geoLocationInit(){
 			if(navigator.geolocation){
 				navigator.geolocation.getCurrentPosition(success,fail);
@@ -57,22 +80,33 @@
 	          map: map
 	        });
 	        directionsDisplay.setPanel(document.getElementById('kiri'));
-	        console.log(kiri);
+	        // console.log(kiri);
         	var request = {
 	          destination: desLatLng,
 	          origin: myLatLng,
 	          travelMode: 'DRIVING'
+
 	        };
 	        // Pass the directions request to the directions service.
 	        var directionsService = new google.maps.DirectionsService();
 	        directionsService.route(request, function(response, status) {
-	          if (status == 'OK') {
-            // Display the route on the map.
-            directionsDisplay.setDirections(response);
-          	}
+	          	if (status == 'OK') {
+            		// Display the route on the map.
+            		directionsDisplay.setDirections(response);
+            		distance = response.routes[0].legs[0].distance.value;
+           			// alert(distance);
+           			// if(distance) {
+           			// 	$('#transaksi').show();
+           			// }
+           			$('#distance2').val(distance);
+ 
+          		}
         	});
 
+
 		}
+
+		// console.log(distance);
 		function fail(){
 			alert("it fails");
 		}

@@ -48,12 +48,12 @@
 
         @if (!empty($halaman) && $halaman == 'transaksi')
         <li class="active">
-          <a href="{{ url('/admin/transaksi') }}">
+          <a href="{{ route('transaksi.index') }}">
             <i class="fa fa-files-o"></i> <span>Transaksi</span>
           </a>
         </li>
         @else
-        <li><a href="{{ url('/admin/transaksi') }}"><i class="fa fa-files-o"></i> <span>Transaksi</span></a></li>
+        <li><a href="{{ route('transaksi.index') }}"><i class="fa fa-files-o"></i> <span>Transaksi</span></a></li>
         @endif
 
         @if (!empty($halaman) && $halaman == 'backup')

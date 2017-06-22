@@ -36,6 +36,7 @@
                       <td>{{ $no++ }}</td>
                       <td>{{ $objek->created_at }}</td>
                       <td>{{ $objek->objekwisata->nama_objekwisata }}</td>
+                      {{-- <td></td> --}}
                       <td>{{ $objek->user->name }}</td>
                       @role('admin')
                       <td>

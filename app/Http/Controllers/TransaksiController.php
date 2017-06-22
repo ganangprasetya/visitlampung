@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Transaksi;
 use App\Objekwisata;
 use Session;
-
 use App\Role;
 use PDF;
 use Carbon\Carbon;
@@ -28,10 +27,15 @@ class TransaksiController extends Controller
      */
     public function index()
     {
+        // dd('it work');
         $transaksi = Transaksi::all();
-        $users = Role::where('name','user')->first()->users;
+        // $users = Role::where('name','user')->first()->users;
+
+        // dd($transaksi->find(2)->user->name);
+
+        // dd($users);
         $halaman = 'transaksi';
-        return view('admin.Transaksi.index', compact('halaman','transaksi','users'));
+        return view('admin.transaksi.index', compact('halaman','transaksi'));
     }
 
     /**

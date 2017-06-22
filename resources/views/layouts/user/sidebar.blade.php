@@ -14,9 +14,10 @@
         
       </div>
     </li>
-    <li><a class="waves-effect" href="{{ route('biodata.index') }}"><i class="material-icons">perm_identity</i>Profile</a></li>
+    <li><a class="waves-effect" href="{{ route('biodata.index') }}"><i class="material-icons">perm_identity</i>Profil</a></li>
+    <li><a class="waves-effect" href="{{ url('setting/password') }}"><i class="material-icons">https</i>Ubah Password</a></li>
     <li>
-        <a " href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+        <a  href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
         <i class="material-icons">power_settings_new</i> Logout
         </a>
         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">

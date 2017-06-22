@@ -108,7 +108,7 @@
 			<td>
 				<p class="med times"><b>Total Kunjungan/Bulan :</b> {{ $transaksi->count() }} orang</p>
 				<br>
-				<p class="med times"><b>Jumlah Objek Wisata yang Dikunjungi :</b> {{ $objekwisata->count() }}</p>
+				<p class="med times"><b>Jumlah Objek Wisata :</b> {{ $objekwisata->count() }}</p>
 			</td>
 		</tr>
 	</table>

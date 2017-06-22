@@ -11,6 +11,7 @@ use App\User;
 use Storage;
 
 use Session;
+use Auth;
 
 class BiodataController extends Controller
 {
@@ -95,8 +96,16 @@ class BiodataController extends Controller
     {
         $biodata = Biodata::findOrFail($id);
 
-        // dd($biodata);
-        return view('users.biodata.editbiodata', compact('biodata'));
+        if($biodata->user_id === Auth::user()->id) {
+            return view('users.biodata.editbiodata', compact('biodata'));
+        }
+        // dd(Auth::user()->id);
+        else{
+            $biodata = Biodata::all();
+            return view('users.front.profile', compact('biodata'));
+            // return view('errors.404');
+        }
+        
     }
 
     /**
