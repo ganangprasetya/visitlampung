@@ -2,7 +2,7 @@
   <li>
     <div class="userView">
       <div class="background">
-        <img src="{{ asset('img/background.png') }}">
+        <img src="{{ asset('img/assets/background.png') }}">
       </div>
       <a href="#"><img class="circle responsive-img" width="400" src="{{ asset('img/'.Auth::user()->biodata->foto) }}"></a>
       <a href="{ url('/profile') }}"><span class="white-text name"> {{ Auth::user()->name }} </span></a>

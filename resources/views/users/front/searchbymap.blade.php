@@ -43,6 +43,7 @@
 	<script type="text/javascript">
 		
 		var map, myLatLng;
+		
 		// var radius;
 		$(document).ready(function(){
 		// $('#radius').on('change', function(e){
@@ -93,38 +94,32 @@
 		    });
 		}
 
-		var wisata = 
-			'<div class="row" id="wisata">'+
-			'<p><a href="{{ route('kategori.wisata.show',4) }}"><i class="medium material-icons">navigation</i>GO HERE</a>'+
-            '</div>'+
-            '</div>';
-
-
-		function createMarker(latlng, icn, name){
+		function createMarker(latlng, icn, name, idmap){
 			var marker = new google.maps.Marker({
 			    position: latlng,
 			    map: map,
 			    icon: icn,
-			    title: name
+			    title: name,
+			    url: "kategori/wisata/"+idmap
 				});
-			var infowindow = new google.maps.InfoWindow({
-	          	content: wisata
-	        });
-	        marker.addListener('click', function() {
-	          infowindow.open(map, marker);
-	        });
+			google.maps.event.addListener(marker, 'click', function() {
+        	window.location.href = this.url;
+    	});
 		}
+		
+		//Pencarian wisata terdekat
 		function searchWisatas(lat,lng){
 		$.post('{{ url('/api/searchWisatas') }}', {lat:lat, lng:lng}, function(match){
 			$.each(match, function(i, val){
+				//looping data wisata terdekat
 				var glatval=val.lat;
 				var glngval=val.lng;
 				var gname =val.nama_objekwisata;
 				var gid = val.id;
 				var GLatLng = new google.maps.LatLng(glatval, glngval);
 				var gicn = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-				createMarker(GLatLng,gicn,gname);
-				// alert(val.id)
+				createMarker(GLatLng,gicn,gname,gid);
+				// console.log(gid);
 			});
 
 		});

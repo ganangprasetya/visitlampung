@@ -55,7 +55,7 @@
     padding-top: 10px;
   }
   .siji {
-    font-size: 40px;
+    font-size: 20px;
     font-family: bebas neue;
     margin-top:45px;
   }

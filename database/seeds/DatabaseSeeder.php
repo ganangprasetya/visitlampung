@@ -15,10 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(KecamatanSeeder::class);
         $this->call(LokasiSeeder::class);
         $this->call(JenisobjekwisataSeeder::class);
-        $this->call(ObjekwisataSeeder::class);
-        $this->call(TransaksiSeeder::class);
         $this->call(UsersSeeder::class);
-        $this->call(BiodataSeeder::class);
         
     }
 }

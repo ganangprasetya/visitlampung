@@ -22,7 +22,7 @@
 		@foreach ($detail_objekwisata as $wisata)
 			<div class="col s12 m6 grey lighten-5 z-depth-2 hoverable" style="margin-bottom:10px;">
 		      	<div class="col s3">
-		            <img src="{{ asset('img/'.$wisata->gambar_satu) }}" width="200" class="circle responsive-img" alt="{{ $wisata->gambar_satu }}"> 
+		            <img src="{{ asset('img/'.$wisata->gambar_satu) }}" width="300" heihgt="300" class="responsive-img" alt="{{ $wisata->gambar_satu }}"> 
 		            {{-- {!! Html::image(asset('img/'.$wisata->gambar_satu),null,['class'=>'circle responsive-img','width'=>'200px']) !!} --}}
 		        </div>
 		        <div class="col s5">

@@ -60,7 +60,7 @@ class ObjekwisataController extends Controller
                 'lat' => 'required',
                 'lng' => 'required',
                 'info' => 'required',
-                'gambar_satu' => 'required|image|max:500|mimes:jpeg,jpg,bmp,png',
+                'gambar_satu' => 'required|image|max:700|mimes:jpeg,jpg,bmp,png',
             ]);
             if($request->hasFile('gambar_satu')){
                 $gambar_satu = $request->file('gambar_satu');
@@ -145,9 +145,9 @@ class ObjekwisataController extends Controller
                 'lat' => 'required',
                 'lng' => 'required',
                 'info' => 'required',
-                'gambar_satu' => 'sometimes|image|max:500|mimes:jpeg,jpg,bmp,png',
-                'gambar_dua' => 'sometimes|image|max:500|mimes:jpeg,jpg,bmp,png',
-                'gambar_tiga' => 'sometimes|image|max:500|mimes:jpeg,jpg,bmp,png',
+                'gambar_satu' => 'sometimes|image|max:700|mimes:jpeg,jpg,bmp,png',
+                'gambar_dua' => 'sometimes|image|max:700|mimes:jpeg,jpg,bmp,png',
+                'gambar_tiga' => 'sometimes|image|max:700|mimes:jpeg,jpg,bmp,png',
             ]);
             if($request->hasFile('gambar_satu')){
                 $exist_satu = Storage::disk("gambar_satu")->exists($objekwisata->gambar_satu);

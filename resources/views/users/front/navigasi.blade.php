@@ -41,7 +41,7 @@
 			// console.log(jarak.val());
 			var form = $('#formloop');
 			if(jarak.val() > 100) {
-				form.show();
+				form.hide();
 			}
 		}
 		

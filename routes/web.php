@@ -53,27 +53,3 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin|kepaladinas']]
 });
 
 
-
-// Route::get('/admin/data/objekwisata', function () {
-// 	$halaman = 'objekwisata';
-//     return view('admin.objekwisata.index', compact('halaman'));
-// });
-
-
-// Route::resource('/admin/data/objekwisata/kabupaten', 'KabupatenController');
-
-// Route::resource('/admin/data/objekwisata/jenisobjekwisata', 'JenisobjekwisataController');
-
-// Route::resource('/admin/data/objekwisata/kecamatan', 'KecamatanController');
-
-// Route::resource('/admin/data/objekwisata/lokasi', 'LokasiController');
-
-// Route::resource('/admin/data/objekwisata', 'ObjekwisataController');
-
-// Route::resource('/admin/data/objekwisata/kabupaten', 'KabupatenController');
-// Route::get('/admin/data/objekwisata/kabupaten', [
-// 	'use' => 'KabupatenController@index',
-// 	'as' => 'kabupaten.index'
-// ]);
-
-

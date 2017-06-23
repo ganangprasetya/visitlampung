@@ -28,7 +28,7 @@
               &nbsp;
                     @if(isset($kabupaten) && $kabupaten->peta_lokasi)
                         <p>
-                            {!! Html::image(asset('img/'.$kabupaten->peta_lokasi),null,['class'=>'img-rounded img-responsive','width'=>'800px']) !!}
+                            {!! Html::image(asset('img/'.$kabupaten->peta_lokasi),null,['class'=>'img-rounded img-responsive','width'=>'400px']) !!}
                         </p>
                     @endif
               </td>

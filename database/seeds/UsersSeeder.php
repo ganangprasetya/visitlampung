@@ -50,32 +50,17 @@ class UsersSeeder extends Seeder
 
         $ganang = new User();
         $ganang->name = 'Ganang';
-        $ganang->email = 'ganang@gmail.com';
+        $ganang->email = 'ganang@mail.com';
         $ganang->password = bcrypt('rahasia');
         $ganang->save();
         $ganang->attachRole($userRole);
-        // //membuat sample user
-        $user = new User();
-        $user->name ='Taylor';
-        $user->email = 'taylor@mail.com';
-        $user->password = bcrypt('rahasia');
-        $user->save();
-        $user->attachRole($userRole);
 
         // //membuat sample user
         $paulus = new User();
-        $paulus->name ='Paulus';
-        $paulus->email = 'paulus@mail.com';
+        $paulus->name ='Joni';
+        $paulus->email = 'joni@mail.com';
         $paulus->password = bcrypt('rahasia');
         $paulus->save();
         $paulus->attachRole($userRole);
-
-        // //membuat sample user
-        $yakobus = new User();
-        $yakobus->name ='Yakobus';
-        $yakobus->email = 'yakobus@mail.com';
-        $yakobus->password = bcrypt('rahasia');
-        $yakobus->save();
-        $yakobus->attachRole($userRole);
     }
 }
