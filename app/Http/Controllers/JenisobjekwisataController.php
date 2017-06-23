@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Jenisobjekwisata;
-
 use Session;
 
 use Storage;
@@ -145,6 +144,7 @@ class JenisobjekwisataController extends Controller
         $jenisobjekwisata = Jenisobjekwisata::findOrFail($id);
         $jenisobjekwisata->delete();
         Session::flash('flash_message','Jenis Objekwisata berhasil dihapus.');
+        Session::flash('penting',true);
         return redirect()->route('jenisobjekwisata.index');
     }
     public function uploadFoto(Request $request){

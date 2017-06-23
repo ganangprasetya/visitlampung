@@ -20,36 +20,24 @@ Route::group(['middleware'=>'auth'], function() {
 	Route::get('kategori/wisata/{wisata}', 'WisataController@show')->name('kategori.wisata.show');
 	Route::resource('kategori/wisata/navigasi', 'NavigasiController');
 	Route::resource('kategori', 'KategoriController');
-	// Route::resource('/biodata', 'BiodataController');
-	// Route::get('/wisata', function () {
-	//     return view('users.front.wisata');
-	// });
-	
-	// Route::get('/profile', function () {
-	//     return view('users.front.profile');
-	// });
-	
 	Route::resource('biodata', 'BiodataController');
-
 	Route::get('/searchbymap', function () {
 	    return view('users.front.searchbymap');
 	});
-
 	Route::get('/navigasi', function () {
 	    return view('users.front.navigasi');
 	});
-
 });
 
 Auth::routes();
 Route::get('/home', 'HomeController@index');
-
 Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin|kepaladinas']], function(){
 	Route::resource('/', 'DashboardController');
+	Route::get('backup','BackupController@index');
+	Route::post('backup','BackupController@export');
 	Route::get('password','SettingController@editPasswordAdmin');
 	Route::post('password','SettingController@updatePasswordAdmin');
 	Route::group(['prefix'=>'data'], function(){
-
 		Route::group(['prefix'=>'objekwisata'], function(){
 			Route::resource('kabupaten', 'KabupatenController');
 			Route::resource('jenisobjekwisata', 'JenisobjekwisataController');
@@ -62,9 +50,6 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin|kepaladinas']]
 	});
 	Route::get('transaksi/pdf', 'TransaksiController@pdf')->name('transaksi.pdf');
 	Route::resource('transaksi', 'TransaksiController');
-
-	Route::resource('backup', 'BackupController');
-
 });
 
 
@@ -90,26 +75,5 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin|kepaladinas']]
 // 	'use' => 'KabupatenController@index',
 // 	'as' => 'kabupaten.index'
 // ]);
-
-
-// Route::get('/admin/data/users', function () {
-// 	$halaman = 'users';
-//     return view('admin.users.index', compact('halaman'));
-// });
-
-// Route::get('/admin/transaksi', function () {
-// 	$halaman = 'transaksi';
-//     return view('admin.transaksi.index', compact('halaman'));
-// });
-
-
-
-//test cetak PDF
-// Route::get('pdf', function() {
-// 	// $pdf = PDF::loadView('pdf');
-// 	// return $pdf->download('invoice.pdf');
-// 	$pdf = PDF::loadView('pdf');
-// 	return $pdf->stream('document.pdf');
-// });
 
 

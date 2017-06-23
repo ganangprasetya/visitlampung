@@ -51,7 +51,7 @@
 		});
 		geoLocationInit();
 		setInterval(function(){
-			// $('#kiri').empty();
+			$('#kiri').empty();
 			geoLocationInit();
 		},20000);
 		function geoLocationInit(){
